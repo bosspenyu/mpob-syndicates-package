@@ -1,0 +1,75 @@
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~admin-lte/build/scss/adminlte';
+@import "icheck-bootstrap/icheck-bootstrap.min.css";
+@import "select2/dist/css/select2.min.css";
+@import "daterangepicker";
+@import "dropzone/dist/dropzone.css";
+
+body{
+    font-size: 0.75rem;
+}
+.content-header h1{
+    font-size: 1.4rem;
+}
+.dropdown-menu {
+    font-size: 0.75rem;
+}
+.form-control{
+    font-size: 0.75rem;
+}
+//Logo Right
+.brand-link .brand-image{
+    width: 45px;
+}
+//End Logo Right
+
+// Syndicate Profile
+.profile-badge{
+    border:1px solid #c1c1c1;
+    padding:5px;
+    position: relative;
+}
+.profile-pic{
+    text-align: center;
+}
+.profile-pic img{
+    box-shadow: 0 0 5px 0 #c1c1c1;
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+}
+// End Of File Syndicate Profile
+
+// Search Module
+fieldset {
+    border: 2px dotted #999 !important;
+    border-radius: 4px;
+    & > legend {
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 10px;
+    border-bottom:none;
+}
+// Search Module
+
+.file-uploader{
+    border: 2px dashed #417bee !important;
+}
+
+#file-uploader .message {
+    font-family: "Segoe UI Light", "Arial", serif !important;
+    font-weight: 200 ;
+    color: #122539;
+    font-size: 1.5em;
+    letter-spacing: 0.02em;
+}
