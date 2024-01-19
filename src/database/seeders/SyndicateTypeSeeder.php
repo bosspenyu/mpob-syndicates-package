@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\SyndicateType;
+use Mpob\Syndicates\Models\SyndicateType;
 use Illuminate\Database\Seeder;
 
 class SyndicateTypeSeeder extends Seeder

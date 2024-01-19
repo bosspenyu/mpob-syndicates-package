@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::connection(config('syndicates.syndicates'))->create('media', function (Blueprint $table) {
             $table->id();
 
             $table->uuidMorphs('model');

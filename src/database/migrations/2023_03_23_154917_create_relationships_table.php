@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('relationships', function (Blueprint $table) {
+        Schema::connection(config('syndicates.syndicates'))->create('relationships', function (Blueprint $table) {
             $table->uuid('id_')->primary();
             $table->string('name_')->unique();
             $table->timestamp('create_dt')->nullable();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('relationships');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('relationships');
     }
 };

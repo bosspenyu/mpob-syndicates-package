@@ -11,20 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('migration');
-        Schema::dropIfExists('syndicate_types');
-        Schema::dropIfExists('syndicate_categories');
-        Schema::dropIfExists('syndicates');
-        Schema::dropIfExists('tags');
-        Schema::dropIfExists('relationships');
-        Schema::dropIfExists('networks');
-        Schema::dropIfExists('syndicate_tags');
-        Schema::dropIfExists('vehicles');
-        Schema::dropIfExists('media');
-        Schema::dropIfExists('notes');
+        Schema::connection(config('syndicates.syndicates'))->disableForeignKeyConstraints();
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('migration');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('syndicate_types');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('syndicate_categories');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('syndicates');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('tags');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('relationships');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('networks');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('syndicate_tags');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('vehicles');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('media');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('notes');
 
-        Schema::enableForeignKeyConstraints();
+        Schema::connection(config('syndicates.syndicates'))->enableForeignKeyConstraints();
     }
 
     /**
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('syndicate_types');
+        Schema::connection(config('syndicates.syndicates'))->dropIfExists('syndicate_types');
     }
 };

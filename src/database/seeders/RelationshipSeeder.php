@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Relationship;
+use Mpob\Syndicates\Models\Relationship;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
