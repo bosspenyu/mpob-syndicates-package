@@ -51,7 +51,7 @@
                 "Mpob\\Syndicates\\ServiceProvider"
             ],
             "aliases": {
-                "Debugbar": "Mpob\\Syndicates\\Facade"
+                "Syndicates": "Mpob\\Syndicates\\Facade"
             }
         }
     }
