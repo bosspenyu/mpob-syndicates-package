@@ -46,7 +46,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [],
+            "dont-discover": [
+                "mpob/syndicates"
+            ],
             "providers": [
                 "Mpob\\Syndicates\\ServiceProvider"
             ],
