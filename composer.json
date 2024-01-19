@@ -50,10 +50,10 @@
                 "mpob/syndicates"
             ],
             "providers": [
-                "Mpob\\Syndicates\\ServiceProvider"
+                "Mpob\\Syndicates\\Syndicates\\ServiceProvider"
             ],
             "aliases": {
-                "Syndicates": "Mpob\\Syndicates\\Facade"
+                "Syndicates": "Mpob\\Syndicates\\SyndicatesFacade"
             }
         }
     }
