@@ -46,11 +46,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": [
-                "mpob/syndicates"
-            ],
+            "dont-discover": [],
             "providers": [
-                "Mpob\\Syndicates\\Syndicates\\ServiceProvider"
+                "Mpob\\Syndicates\\SyndicatesServiceProvider"
             ],
             "aliases": {
                 "Syndicates": "Mpob\\Syndicates\\SyndicatesFacade"
