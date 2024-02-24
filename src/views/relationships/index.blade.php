@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <section class="content-header">
@@ -20,13 +20,13 @@
                             <h4 class="card-title">{{ __('Senarai Hubungan') }}</h4>
                             <div class="float-right">
                                 <a href="{{ route('relationships.create') }}"
-                                   class="btn btn-xs btn-primary">
+                                   class="btn btn-default custom-button-primary">
                                     <i class="fa fa-plus-circle"></i> {{ __('Tambah') }}
                                 </a>
                             </div>
                         </div>
                         <div class="card-body p-0">
-                            @include('elements.alert')
+                            @include('syndicates::elements.alert')
                             <div class="row">
                                 <div class="col-xl-12">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">

@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('layouts.app')
+@extends('layouts.master')
 
 {{-- Content --}}
 @section('content')
@@ -22,12 +22,12 @@
         </div>
     </section>
 
-    @include('elements.search')
+    @include('syndicates::elements.search')
 
     <section class="content">
         <div class="container-fluid">
             <!-- row -->
-            @include('elements.alert')
+            @include('syndicates::elements.alert')
             <div class="row">
                 <div class="col-xl-12 col-xxl-12 col-lg-12">
                     <div class="card">
@@ -66,13 +66,13 @@
                                                                 data-toggle="tooltip"
                                                                 title="{{ __('Tambah Rangkaian') }}"
                                                                 onclick="document.getElementById('form-link-syndicate-{{$list->id_}}').submit();"
-                                                                class="btn btn-primary btn-xs btn-flat"><i class="fas fa-handshake"></i>
+                                                                class="btn btn-default custom-button-primary btn-flat"><i class="fas fa-handshake"></i>
                                                             </button>
                                                             <button
                                                                 data-toggle="tooltip"
                                                                 title="{{ __('Rangkaian Detail') }}"
                                                                 onclick="document.getElementById('form-chart-syndicate-{{$list->id_}}').submit();"
-                                                                class="btn btn-default btn-flat btn-xs">
+                                                                class="btn btn-default custom-button-primary btn-xs">
                                                                 <i class="fas fa-network-wired"></i>
                                                             </button>
                                                         </div>

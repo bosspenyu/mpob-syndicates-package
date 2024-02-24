@@ -2,8 +2,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <fieldset class="form-group p-3">
-                    <legend class="w-auto px-2">{{ __('Carian') }}</legend>
+                <fieldset class="form-group p-3 border">
+                    <legend class="px-3 w-auto">{{ __('Carian') }}</legend>
                     <form method="get">
                         <input type="hidden" class="advance_search" name="advance_search" value="false">
                         <input type="hidden" name="query" value="true">
@@ -41,8 +41,8 @@
                                             <option value="">{{ __('Pilih Lokasi Operasi') }}</option>
                                             @foreach($cities as $city)
                                                 <option
-                                                    value="{{ $city->code_ }}" {{$city->code_ == request()->get('city_id') ? "selected":""}}>{{ ucfirst(strtolower($city->name_)) }}
-                                                    ({{ $city->state->name_ }})
+                                                    value="{{ $city->CODE_ }}" {{$city->CODE_ == request()->get('city_id') ? "selected":""}}>{{ ucfirst(strtolower($city->NAME_)) }}
+                                                    ({{ $city->state->NAME_ }})
                                                 </option>
                                             @endforeach
                                         </select>
@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <button type="submit"
-                                        class="btn btn-primary btn-xs float-right">
+                                        class="btn btn-default custom-button-primary float-right">
                                     <i class="fa fa-search"></i> {{ __('Carian') }}
                                 </button>
                             </div>

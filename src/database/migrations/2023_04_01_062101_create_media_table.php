@@ -8,23 +8,23 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::connection('syndicates')->create('media', function (Blueprint $table) {
+        Schema::create('MEDIA', function (Blueprint $table) {
             $table->id();
 
-            $table->uuidMorphs('model');
+            $table->uuidMorphs('MODEL');
             $table->uuid()->nullable()->unique();
-            $table->string('collection_name');
-            $table->string('name');
-            $table->string('file_name');
-            $table->string('mime_type')->nullable();
-            $table->string('disk');
-            $table->string('conversions_disk')->nullable();
-            $table->unsignedBigInteger('size');
-            $table->json('manipulations');
-            $table->json('custom_properties');
-            $table->json('generated_conversions');
-            $table->json('responsive_images');
-            $table->unsignedInteger('order_column')->nullable()->index();
+            $table->string('COLLECTION_NAME');
+            $table->string('NAME');
+            $table->string('FILE_NAME');
+            $table->string('MIME_TYPE')->nullable();
+            $table->string('DISK');
+            $table->string('CONVERSIONS_DISK')->nullable();
+            $table->unsignedBigInteger('SIZE');
+            $table->json('MANIPULATIONS');
+            $table->json('CUSTOM_PROPERTIES');
+            $table->json('GENERATED_CONVERSIONS');
+            $table->json('RESPONSIVE_IMAGES');
+            $table->unsignedInteger('ORDER_COLUMN')->nullable()->index();
             $table->nullableTimestamps();
         });
     }

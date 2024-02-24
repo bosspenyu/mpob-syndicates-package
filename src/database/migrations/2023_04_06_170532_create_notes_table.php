@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('syndicates')->create('notes', function (Blueprint $table) {
-            $table->uuid('id_')->primary();
-            $table->longText('description');
-            $table->foreignUuid('syndicate_id_')->references('id_')->on('syndicates');
-            $table->integer('created_by',false,true);
-            $table->timestamp('insert_dt')->nullable();
-            $table->timestamp('create_dt')->nullable();
-            $table->timestamp('update_dt')->nullable();
+        Schema::create('NOTES', function (Blueprint $table) {
+            $table->uuid('ID_')->primary();
+            $table->longText('DESCRIPTION');
+            $table->foreignUuid('SYNDICATE_ID_')->references('ID_')->on('syndicates');
+            $table->integer('CREATED_BY',false,true);
+            $table->timestamp('INSERT_DT')->nullable();
+            $table->timestamp('CREATE_DT')->nullable();
+            $table->timestamp('UPDATE_DT')->nullable();
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('syndicates')->dropIfExists('notes');
+        Schema::dropIfExists('NOTES');
     }
 };

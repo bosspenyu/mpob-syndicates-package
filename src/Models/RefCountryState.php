@@ -10,8 +10,8 @@ class RefCountryState extends Model
 {
     use HasFactory;
 
-    protected $table = 'ref_country_state';
-    protected $primaryKey = "code_";
+    protected $table = 'REF_COUNTRY_STATE';
+    protected $primaryKey = "CODE_";
     protected $keyType = "string";
     public $incrementing = false;
 
@@ -21,6 +21,6 @@ class RefCountryState extends Model
      */
     public function cities(): HasMany
     {
-        return $this->hasMany(RefDistrict::class, 'country_state_code');
+        return $this->hasMany(RefDistrict::class, 'COUNTRY_STATE_CODE');
     }
 }

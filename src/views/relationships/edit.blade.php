@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('layouts.app')
+@extends('layouts.master')
 
 {{-- Content --}}
 @section('content')
@@ -28,7 +28,7 @@
                             @method('put')
                             @csrf
                             <div class="card-body">
-                                @include('elements.alert')
+                                @include('syndicates::elements.alert')
                                 <div class="row">
                                     <div class="{{ Request::input('category') == 2 ? "col-md-6":"col-md-12" }}">
                                         <div class="form-row mb-3">
@@ -53,10 +53,10 @@
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <button type="submit"
-                                                class="btn btn-primary btn-xs float-right"><i
+                                                class="btn btn-default custom-button-primary float-right"><i
                                                 class="fas fa-save"></i> {{ __('Kemaskini') }}</button>
                                         <a href="{{ route('relationships.index') }}"
-                                           class="btn btn-default btn-xs float-right mx-1">
+                                           class="btn btn-default custom-button-primary float-right mx-1">
                                             <i class="fas fa-angle-double-left"></i> {{ __('Kembali') }}</a>
                                     </div>
                                 </div>

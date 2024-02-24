@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('syndicates')->create('syndicate_tags', function (Blueprint $table) {
-            $table->foreignUuid('tag_id_')->references('id_')->on('tags');
-            $table->foreignUuid('syndicate_id_')->references('id_')->on('syndicates');
+        Schema::create('SYNDICATE_TAGS', function (Blueprint $table) {
+            $table->foreignUuid('TAG_ID_')->references('ID_')->on('tags');
+            $table->foreignUuid('SYNDICATE_ID_')->references('ID_')->on('syndicates');
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('syndicates')->dropIfExists('syndicate_tags');
+        Schema::dropIfExists('SYNDICATE_TAGS');
     }
 };

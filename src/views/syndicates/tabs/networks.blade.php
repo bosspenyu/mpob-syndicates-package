@@ -2,7 +2,7 @@
 
     @if($page == "edit")
         <div class="float-right m-1">
-            @include('elements.action_button',["route"=>route('networks.index', $syndicate->id_),"buttons" => ["add"]])
+            @include('syndicates::elements.action_button',["route"=>route('networks.index', $syndicate->id_),"buttons" => ["add"]])
         </div>
     @endif
     <div class="table-responsive">
@@ -26,11 +26,11 @@
                     <td>
                         <div class="btn-group">
                             @if(request()->route()->getActionMethod() == "edit")
-                                <form id="form-delete-network-{{$network->id_}}" method="post"
-                                      action="{{ route('networks.unlink', $syndicate->id_) }}">
+                                <form id="form-delete-network-{{$network->ID_}}" method="post"
+                                      action="{{ route('networks.unlink', $syndicate->ID_) }}">
                                     @csrf @method('delete')
                                     <input type="hidden" name="model_id"
-                                           value="{{$network->id_}}">
+                                           value="{{$network->ID_}}">
                                     <input type="hidden" name="model_type"
                                            value="{{ class_basename($network) }}">
                                     <button type="submit"
@@ -42,10 +42,10 @@
                                 </form>
                             @endif
 
-                            <form target="_blank" id="form-chart-syndicate-{{$network->id_}}" method="get"
+                            <form target="_blank" id="form-chart-syndicate-{{$network->ID_}}" method="get"
                                   action="{{ route('orgchart.index') }}">
                                 @csrf
-                                <input type="hidden" name="model_id" value="{{$network->id_}}">
+                                <input type="hidden" name="model_id" value="{{$network->ID_}}">
                                 <input type="hidden" name="model_type"
                                        value="{{class_basename($network)}}">
 
@@ -61,12 +61,12 @@
                         </div>
                     </td>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $network->name_ }}</td>
-                    <td>{{ $network->lcn_no == null ? 'Tiada Data':$network->lcn_no }}</td>
-                    <td>{{ $network->type == null ? "":$network->type['name'] }}</td>
-                    <td>{{ $network->id_no }}</td>
-                    <td>{{ $network->pivot->relationship->name_ }}</td>
-                    <td>{{ $network->status_record->name_ }}</td>
+                    <td>{{ $network->NAME_ }}</td>
+                    <td>{{ $network->LCN_NO == null ? 'Tiada Data':$network->LCN_NO }}</td>
+                    <td>{{ $network->TYPE == null ? "":$network->type['name'] }}</td>
+                    <td>{{ $network->ID_NO }}</td>
+                    <td>{{ $network->pivot->relationship->NAME_ }}</td>
+                    <td>{{ $network->status_record->NAME_ }}</td>
                 </tr>
             @endforeach
             </tbody>

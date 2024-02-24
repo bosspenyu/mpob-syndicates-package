@@ -15,14 +15,14 @@ class SyndicatesServiceProvider extends ServiceProvider
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'syndicates');
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'syndicates');
+        $this->loadViewsFrom(__DIR__ . '/views', 'syndicates');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('syndicates.php'),
-            ], 'config');
+                __DIR__.'/views' => base_path('resources/views/mpob-modules'),
+            ]);
         }
 
     }
@@ -33,7 +33,6 @@ class SyndicatesServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'database.connections');
 
         // Register the main class to use with the facade
         $this->app->singleton('syndicates', function () {

@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Auth::routes();
-Route::group(["middleware" => "auth"], function () {
+//Auth::routes();
+Route::group(["middleware" => "web"], function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 

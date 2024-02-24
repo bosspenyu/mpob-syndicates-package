@@ -12,7 +12,7 @@ class OrgChartController extends Controller
     {
         $model_id = $request->input('model_id');
         $model_type = $request->input('model_type');
-        return view('networks.orgchart', compact('model_id', 'model_type'));
+        return view('syndicates::networks.orgchart', compact('model_id', 'model_type'));
     }
 
     private function getNode($model, $id){

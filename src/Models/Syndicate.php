@@ -22,18 +22,19 @@ class Syndicate extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia, SoftDeletes, HasUuids;
 
-    protected $primaryKey = 'id_';
+    protected $primaryKey = 'ID_';
     protected $keyType = "string";
 
-    public const CREATED_AT = 'create_dt';
-    public const UPDATED_AT = 'update_dt';
+    public const CREATED_AT = 'CREATE_DT';
+    public const UPDATED_AT = 'UPDATE_DT';
+    public const DELETED_AT = 'DELETED_DT';
 
     /**
      * @return BelongsToMany
      */
     public function tags(): BelongsToMany
     {
-        return $this->belongsToMany(Tag::class, 'syndicate_tags');
+        return $this->belongsToMany(Tag::class, 'SYNDICATE_TAGS');
     }
 
     /**
@@ -41,8 +42,8 @@ class Syndicate extends Model implements HasMedia
      */
     public function trc_acc_skeleton(): MorphToMany
     {
-        return $this->morphedByMany(TrcAcc::class,'from',Network::class,'to_id')
-            ->withPivot('relationship_id')->using(RelationshipContent::class);
+        return $this->morphedByMany(TrcAcc::class,'FROM',Network::class,'TO_ID')
+            ->withPivot('RELATIONSHIP_ID')->using(RelationshipContent::class);
     }
 
     /**
@@ -50,8 +51,8 @@ class Syndicate extends Model implements HasMedia
      */
     public function syndicate_skeleton(): MorphToMany
     {
-        return $this->morphedByMany(Syndicate::class,'from',Network::class,'to_id')
-            ->withPivot('relationship_id')->using(RelationshipContent::class);
+        return $this->morphedByMany(Syndicate::class,'from',Network::class,'TO_ID')
+            ->withPivot('RELATIONSHIP_ID')->using(RelationshipContent::class);
     }
 
     /**
@@ -59,7 +60,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function type(): BelongsTo
     {
-        return $this->belongsTo(SyndicateType::class,'syndicate_type_id');
+        return $this->belongsTo(SyndicateType::class,'SYNDICATE_TYPE_ID');
     }
 
     /**
@@ -67,7 +68,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(SyndicateCategory::class,'syndicate_category_id');
+        return $this->belongsTo(SyndicateCategory::class,'SYNDICATE_CATEGORY_ID');
     }
 
     /**
@@ -75,7 +76,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function confirmation(): BelongsTo
     {
-        return $this->belongsTo(RefStrSts::class,'ref_str_sts_code_','code_');
+        return $this->belongsTo(RefStrSts::class,'REF_STR_STS_CODE_','CODE_');
     }
 
     /**
@@ -83,7 +84,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function vehicles(): HasMany
     {
-        return $this->hasMany(Vehicle::class, 'syndicate_id_');
+        return $this->hasMany(Vehicle::class, 'SYNDICATE_ID_');
     }
 
     /**
@@ -91,7 +92,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function notes(): HasMany
     {
-        return $this->hasMany(Note::class, 'syndicate_id_');
+        return $this->hasMany(Note::class, 'SYNDICATE_ID_');
     }
 
     /**
@@ -103,35 +104,30 @@ class Syndicate extends Model implements HasMedia
     {
         $syndicates = $query->selectRaw(
             '
-            id_,
-            name_,
-            null AS lcn_no,
-            id_no,
-            (SELECT name_ FROM ref_str_sts WHERE syndicates.ref_str_sts_code_ = ref_str_sts.code_) AS status,
-            (SELECT name from syndicate_types WHERE syndicate_types.id = syndicates.syndicate_type_id) AS type,
-            create_dt,
-            "' . class_basename(Syndicate::class) . '" AS model
+            ID_,
+            NAME_,
+            null AS LCN_NO,
+            ID_NO,
+            (SELECT NAME_ FROM REF_STR_STS WHERE SYNDICATES.REF_STR_STS_CODE_ = REF_STR_STS.CODE_) AS STATUS,
+            (SELECT NAME from SYNDICATE_TYPES WHERE SYNDICATE_TYPES.ID = SYNDICATES.SYNDICATE_TYPE_ID) AS TYPE,
+            CREATE_DT,
+            "' . class_basename(Syndicate::class) . '" AS MODEL
             '
         );
 
         if (!is_null($request->input('name'))) {
             $bindings = explode(" ", $request->input('name'));
             foreach ($bindings as $binding) {
-                $syndicates->Orwhere('name_', 'LIKE', '%' . $binding . '%');
+                $syndicates->Orwhere('NAME_', 'LIKE', '%' . $binding . '%');
             }
         }
 
-        if(!is_null($request->input('reg_no'))){
-            $reg_no = $request->input('reg_no');
+        if(!is_null($request->input('REG_NO'))){
+            $reg_no = $request->input('REG_NO');
             $syndicates->whereHas('vehicles', function($query)use($reg_no){
-                return $query->where('reg_no','LIKE','%'.$reg_no.'%');
+                return $query->where('REG_NO','LIKE','%'.$reg_no.'%');
             });
         }
-
-//        if(!is_null($request->input('license_no'))){
-//            $lcn_no = $request->input('license_no');
-//            $syndicates->where(DB::raw()'lcn_no','LIKE','%'.$lcn_no.'%');
-//        }
 
         return $syndicates;
     }
@@ -141,7 +137,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function city()
     {
-        return $this->belongsTo(RefDistrict::class,'city_code_','code_');
+        return $this->belongsTo(RefDistrict::class,'CITY_CODE_','CODE_');
     }
 
     /**
@@ -149,7 +145,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function status_record()
     {
-        return $this->belongsTo(RefStrSts::class, 'ref_str_sts_code_','code_');
+        return $this->belongsTo(RefStrSts::class, 'REF_STR_STS_CODE_','CODE_');
     }
 
     /**
@@ -157,7 +153,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'created_by','id');
+        return $this->belongsTo(User::class, 'CREATED_BY','ID');
     }
 
     /**
@@ -165,7 +161,7 @@ class Syndicate extends Model implements HasMedia
      */
     public function networks(): MorphToMany
     {
-        return $this->morphToMany(TrcAcc::class,'from', Network::class,'from_id','to_id','');
+        return $this->morphToMany(TrcAcc::class,'FROM', Network::class,'FROM_ID','TO_ID','');
     }
 
     /**
@@ -174,10 +170,10 @@ class Syndicate extends Model implements HasMedia
     public function searchNetwork(): MorphToMany
     {
         return $this->morphToMany(
-            Syndicate::class,'from',
+            Syndicate::class,'FROM',
             Network::class,
-            'from_id',
-            'to_id');
+            'FROM_ID',
+            'TO_ID');
     }
 
     /**
@@ -186,17 +182,17 @@ class Syndicate extends Model implements HasMedia
     public static function boot()
     {
         parent::boot();
-        static::addGlobalScope('order', function (Builder $builder) {
-            $builder
-                ->orderBy('create_dt', 'desc');
-
-            if(!Auth::user()->staff->division->code_ == "EU"){
-                $builder->where('region_code', Auth::user()->region);
-            }
-
-            if(!in_array(["KU","KW"], Auth::user()->staff->role->toArray())) {
-                $builder->where('created_by', Auth::id());
-            }
-        });
+//        static::addGlobalScope('order', function (Builder $builder) {
+//            $builder
+//                ->orderBy('CREATE_DT', 'DESC');
+//
+//            if(!Auth::user()->staff->division->CODE_ == "EU"){
+//                $builder->where('REGION_CODE', Auth::user()->region);
+//            }
+//
+//            if(!in_array(["KU","KW"], Auth::user()->staff->role->toArray())) {
+//                $builder->where('CREATED_BY', Auth::id());
+//            }
+//        });
     }
 }

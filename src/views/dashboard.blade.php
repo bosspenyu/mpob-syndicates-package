@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <section class="content-header">
@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            {{ __('Selamat Datang, ') }} <strong>{{ Auth::user()->name }}</strong>
+                            {{ __('Selamat Datang, ') }} <strong>{{ Auth::user()->NAME }}</strong>
                         </div>
                     </div>
                 </div>

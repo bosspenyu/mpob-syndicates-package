@@ -10,14 +10,14 @@ class RefDistrict extends Model
 {
     use HasFactory;
 
-    protected $table = 'ref_district';
-    protected $primaryKey = 'code_';
+    protected $table = 'REF_DISTRICT';
+    protected $primaryKey = 'CODE_';
 
     /**
      * @return BelongsTo
      */
     public function state(): BelongsTo
     {
-        return $this->belongsTo(RefCountryState::class, 'country_state_code','code_');
+        return $this->belongsTo(RefCountryState::class, 'COUNTRY_STATE_CODE','CODE_');
     }
 }

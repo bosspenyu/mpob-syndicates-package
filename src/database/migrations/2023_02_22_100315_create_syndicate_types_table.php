@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('syndicates')->create('syndicate_types', function (Blueprint $table) {
+        Schema::create('SYNDICATE_TYPES', function (Blueprint $table) {
             $table->id();
-            $table->string('name');//warganegara, Bukan Warga Negara, melayu, cina, india, campuran
-            $table->timestamp('create_dt')->nullable();
-            $table->timestamp('update_dt')->nullable();
+            $table->string('NAME');//warganegara, Bukan Warga Negara, melayu, cina, india, campuran
+            $table->timestamp('CREATE_DT')->nullable();
+            $table->timestamp('UPDATE_DT')->nullable();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('syndicates')->dropIfExists('syndicate_types');
+        Schema::dropIfExists('SYNDICATE_TYPES');
     }
 };

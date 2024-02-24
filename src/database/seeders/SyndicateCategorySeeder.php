@@ -14,8 +14,8 @@ class SyndicateCategorySeeder extends Seeder
     {
         SyndicateCategory::truncate();
         $data = [
-            ["name" => "Berkumpulan"],
-            ["name" => "Sendirian"]
+            ["NAME" => "Berkumpulan"],
+            ["NAME" => "Sendirian"]
         ];
 
         foreach ($data as $d){

@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('syndicates')->create('vehicles', function (Blueprint $table) {
-            $table->uuid('id_')->primary();
-            $table->string('reg_no');
-            $table->string('vehicle_code',3);
-            $table->string('make_', 3);
-            $table->string('colour');
-            $table->foreignUuid('syndicate_id_')->references('id_')->on('syndicates');
-            $table->timestamp('create_dt')->nullable();
-            $table->timestamp('update_dt')->nullable();
+        Schema::create('VEHICLES', function (Blueprint $table) {
+            $table->uuid('ID_')->primary();
+            $table->string('REG_NO');
+            $table->string('VEHICLE_CODE',3);
+            $table->string('MAKE_', 3);
+            $table->string('COLOUR');
+            $table->foreignUuid('SYNDICATE_ID_')->references('ID_')->on('syndicates');
+            $table->timestamp('CREATE_DT')->nullable();
+            $table->timestamp('UPDATE_DT')->nullable();
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('syndicates')->dropIfExists('vehicles');
+        Schema::dropIfExists('VEHICLES');
     }
 };

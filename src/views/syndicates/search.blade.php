@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('layouts.app')
+@extends('layouts.master')
 
 {{-- Content --}}
 @section('content')
@@ -22,12 +22,12 @@
         </div>
     </section>
 
-    @include('elements.search')
+    @include('syndicates::elements.search')
 
     <section class="content">
         <div class="container-fluid">
             <!-- row -->
-            @include('elements.alert')
+            @include('syndicates::elements.alert')
             <div class="row">
                 <div class="col-xl-12 col-xxl-12 col-lg-12">
                     <div class="card">
@@ -58,34 +58,34 @@
                                                             <button data-toggle="tooltip"
                                                                     data-placement="top"
                                                                     title="{{ __('Rangkaian Detail') }}"
-                                                                    onclick="document.getElementById('form-chart-syndicate-{{$list->id_}}').submit();"
+                                                                    onclick="document.getElementById('form-chart-syndicate-{{$list->ID_}}').submit();"
                                                                     class="btn btn-default btn-flat btn-xs">
                                                                 <i class="fas fa-network-wired"></i>
                                                             </button>
                                                             @if($list->model == "Syndicate")
                                                                 <a data-toggle="tooltip" title="Butiran"
-                                                                   class="btn btn-xs btn-primary"
-                                                                   href="{{ route('syndicates.show', $list->id_) }}">
+                                                                   class="btn btn-default custom-button-primary"
+                                                                   href="{{ route('syndicates.show', $list->ID_) }}">
                                                                     <i class="fas fa-book-open"></i>
                                                                 </a>
                                                             @endif
                                                         </div>
 
-                                                        <form target="_blank" id="form-chart-syndicate-{{$list->id_}}"
+                                                        <form target="_blank" id="form-chart-syndicate-{{$list->ID_}}"
                                                               method="get"
                                                               action="{{ route('orgchart.index') }}">
                                                             @csrf
-                                                            <input type="hidden" name="model_id" value="{{$list->id_}}">
+                                                            <input type="hidden" name="model_id" value="{{$list->ID_}}">
                                                             <input type="hidden" name="model_type"
                                                                    value="{{$list->model}}">
                                                         </form>
                                                     </td>
                                                     <td>{{ ($syndicates->currentpage()-1) * $syndicates->perpage() + $loop->index + 1  }}</td>
-                                                    <td>{{ $list->name_ }}</td>
-                                                    <td>{{ $list->lcn_no == null ? __('Tiada Data'): $list->lcn_no}}</td>
-                                                    <td>{{ $list->type }}</td>
-                                                    <td>{{ $list->id_no == null ? __('Tiada Data'): $list->id_no}} </td>
-                                                    <td>{!! $list->status ? '<span class="badge badge-success">'.__('Aktif').'</span>':'<span class="badge badge-danger">'.__('Tidak Aktif').'</span>' !!}</td>
+                                                    <td>{{ $list->NAME_ }}</td>
+                                                    <td>{{ $list->LCN_NO == null ? __('Tiada Data'): $list->LCN_NO}}</td>
+                                                    <td>{{ $list->TYPE }}</td>
+                                                    <td>{{ $list->ID_NO == null ? __('Tiada Data'): $list->ID_NO}} </td>
+                                                    <td>{!! $list->STATUS ? '<span class="badge badge-success">'.__('Aktif').'</span>':'<span class="badge badge-danger">'.__('Tidak Aktif').'</span>' !!}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

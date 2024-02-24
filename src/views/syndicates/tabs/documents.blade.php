@@ -23,7 +23,7 @@
                 </div>
 
                 <table class="table table-striped table-bordered" id="uploadingDocs"
-                       data-action="{{route('documents.upload', $syndicate->id_)}}">
+                       data-action="{{route('documents.upload', $syndicate->ID_)}}">
                     <thead>
                     <tr>
                         <th>#</th>
@@ -59,7 +59,7 @@
         </div>
         <div class="card-body">
             <table id="uploadedDocs" class="table table-striped table-bordered"
-                   data-action="{{ route('documents.delete', $syndicate->id_) }}">
+                   data-action="{{ route('documents.delete', $syndicate->ID_) }}">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -75,13 +75,13 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             {{
-                                $document->custom_properties['uploaded_by'] != null ? \App\Models\User::find($document->custom_properties['uploaded_by'])->name:''
+                                $document->custom_properties['uploaded_by'] != null ? \App\Models\User::find($document->custom_properties['uploaded_by'])->NAME:''
                             }}
                         </td>
-                        <td>{{ $document->name }}</td>
-                        <td>{{ \Illuminate\Support\Carbon::parse($document->create_dt)->format('d/m/Y') }}</td>
+                        <td>{{ $document->NAME }}</td>
+                        <td>{{ \Illuminate\Support\Carbon::parse($document->CREATE_DT)->format('d/m/Y') }}</td>
                         <td class="text-center">
-                            <button class="btn btn-xs btn-danger docDelete" data-media-id="{{ $document->id }}">
+                            <button class="btn btn-xs btn-danger docDelete" data-media-id="{{ $document->ID }}">
                                 <i class="fa fa-trash"></i></button>
                             <button class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></button>
                         </td>

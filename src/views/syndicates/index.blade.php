@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <section class="content-header">
@@ -12,7 +12,7 @@
     </section>
 
 
-    @include('elements.search')
+    @include('syndicates::elements.search')
 
     <section class="content">
         <div class="container-fluid">
@@ -23,13 +23,13 @@
                             <h4 class="card-title">{{ __('Senarai Sindiket') }}</h4>
                             <div class="float-right">
                                 <a href="{{ route('syndicates.create') }}"
-                                   class="btn btn-xs btn-primary">
+                                   class="btn btn-default custom-button-primary">
                                     <i class="fa fa-plus-circle"></i> {{ __('Tambah') }}
                                 </a>
                             </div>
                         </div>
                         <div class="card-body p-0">
-                            @include('elements.alert')
+                            @include('syndicates::elements.alert')
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="table-responsive">
@@ -51,17 +51,17 @@
                                             <tr>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a data-toggle="tooltip" title="Butiran" class="btn btn-xs btn-primary"
-                                                           href="{{ route('syndicates.show', $syndicate->id_) }}">
+                                                        <a data-toggle="tooltip" title="Butiran" class="btn btn-default custom-button-primary"
+                                                           href="{{ route('syndicates.show', $syndicate->ID_) }}">
                                                             <i class="fas fa-book-open"></i>
                                                         </a>
-                                                        <a data-toggle="tooltip" title="Kemaskini" class="btn btn-xs btn-warning" href="{{ route('syndicates.edit', $syndicate->id_) }}">
+                                                        <a data-toggle="tooltip" title="Kemaskini" class="btn btn-xs btn-warning" href="{{ route('syndicates.edit', $syndicate->ID_) }}">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
-                                                        <form target="_blank" id="form-chart-syndicate-{{$syndicate->id_}}" method="get"
+                                                        <form target="_blank" id="form-chart-syndicate-{{$syndicate->ID_}}" method="get"
                                                               action="{{ route('orgchart.index') }}">
                                                             @csrf
-                                                            <input type="hidden" name="model_id" value="{{$syndicate->id_}}">
+                                                            <input type="hidden" name="model_id" value="{{$syndicate->ID_}}">
                                                             <input type="hidden" name="model_type"
                                                                    value="{{class_basename($syndicate)}}">
 
@@ -75,17 +75,17 @@
                                                     </div>
                                                 </td>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $syndicate->name_ }}</td>
-                                                <td>{{ $syndicate->since }}</td>
+                                                <td>{{ $syndicate->NAME_ }}</td>
+                                                <td>{{ $syndicate->SINCE }}</td>
                                                 <td>
-                                                    @if($syndicate->city_code_)
-                                                        {{ $syndicate->city->name_ }}
-                                                        ({{ ucfirst(strtolower($syndicate->city->state->name_)) }})
+                                                    @if($syndicate->CITY_CODE_)
+                                                        {{ $syndicate->city->NAME_ }}
+                                                        ({{ ucfirst(strtolower($syndicate->city->state->NAME_)) }})
                                                     @endif
                                                 </td>
-                                                <td>{{ $syndicate->confirmation->name_}}</td>
-                                                <td>{!! $syndicate->status ? '<span class="badge badge-success">'.__('Aktif').'</span>':'<span class="badge badge-danger">'.__('Tidak Aktif').'</span>' !!}</td>
-                                                <td>{{ $syndicate->update_dt->format('d/m/Y') }}</td>
+                                                <td>{{ $syndicate->confirmation->NAME_}}</td>
+                                                <td>{!! $syndicate->STATUS ? '<span class="badge badge-success">'.__('Aktif').'</span>':'<span class="badge badge-danger">'.__('Tidak Aktif').'</span>' !!}</td>
+                                                <td>{{ $syndicate->UPDATE_DT->format('d/m/Y') }}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

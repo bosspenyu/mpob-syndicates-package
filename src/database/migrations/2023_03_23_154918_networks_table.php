@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('syndicates')->create('networks', function (Blueprint $table) {
-            $table->foreignUuid('relationship_id')->references('id_')->on('relationships');
-            $table->uuidMorphs('from');
-            $table->uuidMorphs('to');
+        Schema::create('NETWORKS', function (Blueprint $table) {
+            $table->foreignUuid('RELATIONSHIP_ID')->references('id_')->on('relationships');
+            $table->uuidMorphs('FROM');
+            $table->uuidMorphs('TO');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('syndicates')->dropIfExists('networks');
+        Schema::dropIfExists('NETWORKS');
     }
 };

@@ -23,10 +23,10 @@ class VehicleController extends Controller
      */
     public function create($syndicateId): View
     {
-        $vehicleTypes = VehicleType::pluck('name_','code_');
-        $vehicleMakes = VehicleMake::pluck('name_','code_');
+        $vehicleTypes = VehicleType::pluck('NAME_','CODE_');
+        $vehicleMakes = VehicleMake::pluck('NAME_','CODE_');
 
-        return view('vehicles.create',compact(
+        return view('syndicates::vehicles.create',compact(
             'syndicateId',
             'vehicleMakes',
             'vehicleTypes'
@@ -71,7 +71,7 @@ class VehicleController extends Controller
         $vehicleMakes = VehicleMake::pluck('name_','code_');
         $vehicle = Vehicle::find($vehicleId);
 
-        return view('vehicles.show', compact(
+        return view('syndicates::vehicles.show', compact(
             'vehicle',
             'syndicateId',
             'vehicleTypes',
@@ -138,11 +138,11 @@ class VehicleController extends Controller
      * @return void
      */
     protected function columns($model, $request, $syndicateId){
-        $model->reg_no = $request->input('registration_no');
-        $model->vehicle_code = $request->input('type');
-        $model->make_ = $request->input('maker');
-        $model->colour = $request->input('colour');
-        $model->syndicate_id_ = $syndicateId;
+        $model->REG_NO = $request->input('registration_no');
+        $model->VEHICLE_CODE = $request->input('type');
+        $model->MAKE_ = $request->input('maker');
+        $model->COLOUR = $request->input('colour');
+        $model->SYNDICATE_ID_ = $syndicateId;
         $model->save();
     }
 }

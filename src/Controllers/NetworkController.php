@@ -60,7 +60,7 @@ class NetworkController extends Controller
         $cities = RefDistrict::with('state')->get();
         $relationships = Relationship::pluck('name_', 'id_');
 
-        return view('networks.index', compact(
+        return view('syndicates::networks.index', compact(
             'syndicates',
             'states',
             'cities',

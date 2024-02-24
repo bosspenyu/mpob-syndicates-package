@@ -35,19 +35,19 @@ class SyndicateController extends Controller
         if ($request->input('name')) {
             $bindings = explode(" ", $request->input('name'));
             foreach ($bindings as $binding) {
-                $query->where('name_', 'LIKE', '%' . $binding . '%');
+                $query->where('NAME_', 'LIKE', '%' . $binding . '%');
                 $query->orWhereHas('trc_acc_skeleton', function ($q) use ($binding) {
-                    return $q->where('name_', 'LIKE', '%' . $binding . '%');
+                    return $q->where('NAME_', 'LIKE', '%' . $binding . '%');
                 });
             }
         }
 
         if ($request->input('city_id')) {
             $city_id = $request->input('city_id');
-            $query->where('city_code_', $city_id);
+            $query->where('CITY_CODE_', $city_id);
             $query->orWhereHas('trc_acc_skeleton', function ($q) use ($city_id) {
                 return $q->whereHas('location', function ($q) use ($city_id) {
-                    return $q->where('op_addr_district', $city_id);
+                    return $q->where('OP_ADDR_DISTRICT', $city_id);
                 });
             });
 
@@ -57,13 +57,13 @@ class SyndicateController extends Controller
             $state_id = $request->input('state_id');
             $query->whereHas('city', function ($city) use ($state_id) {
                 return $city->whereHas('state', function ($state) use ($state_id) {
-                    return $state->where('code_', $state_id);
+                    return $state->where('CODE_', $state_id);
                 });
             });
 
             $query->orWhereHas('trc_acc_skeleton', function ($q) use ($state_id) {
                 return $q->whereHas('location', function ($q) use ($state_id) {
-                    return $q->where('op_addr_state', $state_id);
+                    return $q->where('OP_ADDR_STATE', $state_id);
                 });
             });
         }
@@ -71,12 +71,12 @@ class SyndicateController extends Controller
         if ($request->input('reg_no')) {
             $reg_no = $request->input('reg_no');
             $query->whereHas('vehicles', function ($q) use ($reg_no) {
-                $q->where('reg_no', $reg_no);
+                $q->where('REG_NO', $reg_no);
             });
 
             $query->orWhereHas('trc_acc_skeleton', function ($q) use ($reg_no) {
                 return $q->whereHas('vehicles', function ($q) use ($reg_no) {
-                    return $q->where('reg_no', $reg_no);
+                    return $q->where('REG_NO', $reg_no);
                 });
             });
         }
@@ -84,23 +84,23 @@ class SyndicateController extends Controller
         if ($request->input('note')) {
             $note = $request->input('note');
             $query->whereHas('notes', function ($q) use ($note) {
-                return $q->where('description', 'LIKE', '%' . $note . '%');
+                return $q->where('DESCRIPTION', 'LIKE', '%' . $note . '%');
             });
         }
 
         if ($request->input('license_no')) {
             $license_no = $request->input('license_no');
-            $query->where('id_no', $license_no);
+            $query->where('ID_NO', $license_no);
             $query->orWhereHas('trc_acc_skeleton', function ($q) use ($license_no) {
-                return $q->where('lcn_no', $license_no);
+                return $q->where('LCN_NO', $license_no);
             });
         }
 
         $syndicates = $query->paginate(10);
-        $cities = RefDistrict::with('state')->get();
-        $states = RefCountryState::pluck('name_', 'code_');
+        $cities = collect();//RefDistrict::with('state')->get();
+        $states = collect();//RefCountryState::pluck('NAME_', 'CODE_');
 
-        return view('syndicates.index', compact(
+        return view('syndicates::syndicates.index', compact(
             'syndicates',
             'cities',
             'states'
@@ -114,12 +114,12 @@ class SyndicateController extends Controller
      */
     public function create(): View
     {
-        $cities = RefDistrict::with('state')->get();
-        $tags = Tag::pluck('name_', 'id_');
-        $syndicateTypes = SyndicateType::whereIn('id', [1, 2])->pluck('name', 'id');
-        $syndicateCategories = SyndicateCategory::pluck('name', 'id');
+        $cities = collect();//RefDistrict::with('state')->get();
+        $tags = Tag::pluck('NAME_', 'ID_');
+        $syndicateTypes = SyndicateType::whereIn('ID', [1, 2])->pluck('NAME', 'ID');
+        $syndicateCategories = SyndicateCategory::pluck('NAME', 'ID');
 
-        return view('syndicates.create', compact(
+        return view('syndicates::syndicates.create', compact(
             'cities',
             'tags',
             'syndicateTypes',
@@ -193,12 +193,12 @@ class SyndicateController extends Controller
         $networks = $mergeSkeleton->all();
 
         $cities = RefDistrict::with('state')->get();
-        $tags = Tag::pluck('name_', 'id_');
+        $tags = Tag::pluck('NAME_', 'ID_');
         $syndicateCategories = SyndicateCategory::all();
-        $syndicateTypes = SyndicateType::pluck('name', 'id');
-        $confirmation = RefStrSts::pluck('name_', 'code_');
+        $syndicateTypes = SyndicateType::pluck('NAME', 'ID');
+        $confirmation = RefStrSts::pluck('NAME_', 'CODE_');
 
-        return view('syndicates.show', compact(
+        return view('syndicates::syndicates.show', compact(
             'syndicate',
             'networks',
             'cities',
@@ -223,15 +223,14 @@ class SyndicateController extends Controller
         $mergeSkeleton = $trc_acc_skeleton->merge($syndicate_skeleton);
         $networks = $mergeSkeleton->all();
 
-        dd($networks);
         $cities = RefDistrict::with('state')->get();
-        $tags = Tag::pluck('name_', 'id_');
+        $tags = Tag::pluck('NAME_', 'ID_');
         $syndicateCategories = SyndicateCategory::all();
-        $syndicateTypes = SyndicateType::pluck('name', 'id');
-        $confirmation = RefStrSts::pluck('name_', 'code_');
+        $syndicateTypes = SyndicateType::pluck('NAME', 'ID');
+        $confirmation = RefStrSts::pluck('NAME_', 'CODE_');
 
 
-        return view('syndicates.edit', compact(
+        return view('syndicates::syndicates.edit', compact(
             'syndicate',
             'networks',
             'cities',
@@ -267,8 +266,8 @@ class SyndicateController extends Controller
             //profile processing
             $syndicate = Syndicate::find($id);
             $this->attributes($request, $syndicate);
-            $syndicate->ref_str_sts_code_ = $request->input('ref_str_sts_code_');
-            $syndicate->status = $request->input('status') == "on" ? 1 : 0;
+            $syndicate->REF_STR_STS_CODE_ = $request->input('ref_str_sts_code_');
+            $syndicate->STATUS = $request->input('status') == "on" ? 1 : 0;
             $syndicate->save();
 
             Log::info('Update Profile Syndicate', $syndicate->toArray());

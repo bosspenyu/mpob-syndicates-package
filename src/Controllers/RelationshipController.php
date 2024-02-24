@@ -4,6 +4,7 @@ namespace Mpob\Syndicates\Controllers;
 
 use App\Http\Controllers\Controller;
 
+use Illuminate\Validation\ValidationException;
 use Mpob\Syndicates\Models\Relationship;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class RelationshipController extends Controller
         $relationships = Relationship::paginate();
         $trashRelationships = Relationship::onlyTrashed()->paginate();
 
-        return view('relationships.index', compact('relationships','trashRelationships'));
+        return view('syndicates::relationships.index', compact('relationships','trashRelationships'));
     }
 
     /**
@@ -31,7 +32,7 @@ class RelationshipController extends Controller
      */
     public function create(): View
     {
-        return view('relationships.create');
+        return view('syndicates::relationships.create');
     }
 
     /**
@@ -66,13 +67,14 @@ class RelationshipController extends Controller
     public function edit($id)
     {
         $relationship = Relationship::find($id);
-        return view('relationships.edit', compact('relationship','id'));
+        return view('syndicates::relationships.edit', compact('relationship','id'));
     }
 
     /**
      * @param Request $request
      * @param $id
      * @return RedirectResponse
+     * @throws ValidationException
      */
     public function update(Request $request, $id)
     {

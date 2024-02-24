@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('syndicates')->create('tags', function (Blueprint $table) {
-            $table->uuid('id_')->primary();
-            $table->string('name_')->unique();
-            $table->timestamp('create_dt')->nullable();
-            $table->timestamp('update_dt')->nullable();
+        Schema::create('TAGS', function (Blueprint $table) {
+            $table->uuid('ID_')->primary();
+            $table->string('NAME_')->unique();
+            $table->timestamp('CREATE_DT')->nullable();
+            $table->timestamp('UPDATE_DT')->nullable();
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('syndicates')->dropIfExists('syndicate_tags');
+        Schema::dropIfExists('SYNDICATE_TAGS');
     }
 };

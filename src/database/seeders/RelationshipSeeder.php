@@ -16,10 +16,10 @@ class RelationshipSeeder extends Seeder
     {
         Relationship::truncate();
         $data = [
-            ["name_" => "Pelesen Subahat"],
-            ["name_" => "Ketua Sindiket"],
-            ["name_" => "Ahli"],
-            ["name_" => "Sindiket Subahat"]
+            ["NAME_" => "Pelesen Subahat"],
+            ["NAME_" => "Ketua Sindiket"],
+            ["NAME_" => "Ahli"],
+            ["NAME_" => "Sindiket Subahat"]
         ];
 
         foreach ($data as $d){

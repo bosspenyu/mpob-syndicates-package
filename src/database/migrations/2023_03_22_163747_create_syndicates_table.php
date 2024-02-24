@@ -11,25 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('syndicates')->create('syndicates', function (Blueprint $table) {
+        Schema::create('SYNDICATES', function (Blueprint $table) {
 
-            $table->uuid('id_')->primary();
-            $table->string('name_');
-            $table->foreignId('syndicate_category_id')->references('id')->on('syndicate_categories');
-            $table->foreignId('syndicate_type_id')->references('id')->on('syndicate_types');
-            $table->string('ref_str_sts_code_', 1)->default('N');
-            $table->string('id_no')->nullable();
-            $table->boolean('status')->default(1);
-            $table->boolean('is_restricted')->default(0);
-            $table->string('city_code_')->nullable();
-            $table->string('region_code')->nullable();
-            $table->decimal('latitude', 11, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
-            $table->integer('since');
-            $table->integer('created_by');
-            $table->timestamp('create_dt')->nullable();
-            $table->timestamp('update_dt')->nullable();
-            $table->softDeletes();
+            $table->uuid('ID_')->primary();
+            $table->string('NAME_');
+            $table->foreignId('SYNDICATE_CATEGORY_ID')->references('id')->on('syndicate_categories');
+            $table->foreignId('SYNDICATE_TYPE_ID')->references('id')->on('syndicate_types');
+            $table->string('REF_STR_STS_CODE_', 1)->default('N');
+            $table->string('ID_NO')->nullable();
+            $table->boolean('STATUS')->default(1);
+            $table->boolean('IS_RESTRICTED')->default(0);
+            $table->string('CITY_CODE_')->nullable();
+            $table->string('REGION_CODE')->nullable();
+            $table->decimal('LATITUDE', 11, 8)->nullable();
+            $table->decimal('LONGITUDE', 11, 8)->nullable();
+            $table->integer('SINCE');
+            $table->integer('CREATED_BY');
+            $table->timestamp('CREATE_DT')->nullable();
+            $table->timestamp('UPDATE_DT')->nullable();
+            $table->softDeletes('DELETED_DT');
 
 
         });
@@ -40,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('syndicates')->dropIfExists('profiles');
+        Schema::dropIfExists('SYNDICATES');
     }
 };

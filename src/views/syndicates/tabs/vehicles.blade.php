@@ -1,7 +1,7 @@
-<div class="tab-pane fade" id="vehicles">
+<DIV CLASS="TAB-PANE FADE" ID="VEHICLES">
     @if($page == "edit")
         <div class="float-right m-1">
-            @include('elements.action_button',["route"=>route('vehicles.create', $syndicate->id_),"buttons" => ["add"]])
+            @include('syndicates::elements.action_button',["route"=>route('vehicles.create', $syndicate->id_),"buttons" => ["add"]])
         </div>
     @endif
     <div class="table-responsive">
@@ -20,16 +20,16 @@
             @foreach($syndicate->vehicles as $vehicle)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $vehicle->reg_no }}</td>
-                    <td>{{ $vehicle->vehicle_code }}</td>
-                    <td>{{ $vehicle->make_ }}</td>
-                    <td>{{ $vehicle->colour }}</td>
+                    <td>{{ $vehicle->REG_NO }}</td>
+                    <td>{{ $vehicle->VEHICLE_CODE }}</td>
+                    <td>{{ $vehicle->MAKE_ }}</td>
+                    <td>{{ $vehicle->COLOUR }}</td>
                     <td class="text-center">
-                        <form id="form-vehicle-delete-{{$syndicate->id_}}" method="post"
-                              action="{{ route('vehicles.destroy', $syndicate->id_) }}">
+                        <form id="form-vehicle-delete-{{$syndicate->ID_}}" method="post"
+                              action="{{ route('vehicles.destroy', $syndicate->ID_) }}">
                             @csrf @method('delete')
                             <input type="hidden" name="vehicle_id"
-                                   value="{{ $vehicle->id_ }}">
+                                   value="{{ $vehicle->ID_ }}">
                         </form>
 
                         <div class="btn-group">
@@ -37,7 +37,7 @@
                                 data-toggle="tooltip"
                                 title="{{ __('Kemaskini') }}"
                                 class="btn btn-warning btn-xs"
-                                href="{{ route('vehicles.show', [$syndicate->id_, $vehicle->id_]) }}">
+                                href="{{ route('vehicles.show', [$syndicate->ID_, $vehicle->ID_]) }}">
                                 <i class="far fa-edit"></i>
                             </a>
                             <a onclick="if(confirm('Padam Kenderaan?'))document.getElementById('form-vehicle-delete-{{$syndicate->id_}}').submit();"

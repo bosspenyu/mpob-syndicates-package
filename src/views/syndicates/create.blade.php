@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('layouts.app')
+@extends('layouts.master')
 
 {{-- Content --}}
 @section('content')
@@ -30,7 +30,7 @@
                         <form enctype="multipart/form-data" method="post" action="{{ route('syndicates.store') }}">
                             @csrf
                             <div class="card-body">
-                                @include('elements.alert')
+                                @include('syndicates::elements.alert')
                                 <div class="row">
                                     <div class="{{ Request::input('category') == 2 ? "col-md-6":"col-md-12" }}">
                                         <div class="form-row mb-3">
@@ -89,8 +89,8 @@
                                                     <option value=""> {{ __('Pilih Lokasi') }} </option>
                                                     @foreach($cities as $city)
                                                         <option
-                                                            value="{{ $city->code_ }}" {{ old('city_code') == $city->code_ ? "selected":"" }}>{{ ucfirst(strtolower($city->name_)) }}
-                                                            ({{ $city->state->name_ }})
+                                                            value="{{ $city->CODE_ }}" {{ old('city_code') == $city->CODE_ ? "selected":"" }}>{{ ucfirst(strtolower($city->NAME_)) }}
+                                                            ({{ $city->state->NAME_ }})
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -182,7 +182,7 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-xl-12">
-                                        @include('elements.action_button',["route"=>route('syndicates.index'),"buttons"=>["save","back"] ])
+                                        @include('syndicates::elements.action_button',["route"=>route('syndicates.index'),"buttons"=>["save","back"] ])
                                     </div>
                                 </div>
                             </div>

@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('layouts.app')
+@extends('layouts.master')
 
 {{-- Content --}}
 @section('content')
@@ -13,7 +13,7 @@
                     <ol class="breadcrumb float-md-right">
                         <li class="breadcrumb-item"><a href="{{ route('syndicates.index') }}">{{ __('Sindiket') }} </a></li>
                         <li class="breadcrumb-item">{{ __('Kenderaan') }}</li>
-                        <li class="breadcrumb-item active">{{ __('Kemaskini') }}</li>
+                        <li class="breadcrumb-item active">{{ __('Tambah') }}</li>
                     </ol>
                 </div>
             </div>
@@ -28,10 +28,10 @@
                         <div class="card-header">
                             <h4 class="card-title">{{ __('Kenderaan Sindiket') }}</h4>
                         </div>
-                        <form enctype="multipart/form-data" method="post" action="{{ route('vehicles.update', [$syndicateId, $vehicle->id_]) }}">
-                            @csrf @method('put')
+                        <form enctype="multipart/form-data" method="post" action="{{ route('vehicles.store', $syndicateId) }}">
+                            @csrf
                             <div class="card-body">
-                                @include('elements.alert')
+                                @include('syndicates::elements.alert')
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="form-group row">
@@ -39,9 +39,7 @@
                                                 <label>{{ __('No. Pendaftaran') }}</label>
                                                 <input type="text"
                                                        class="form-control {{ $errors->has('registration_no') ? 'is-invalid':'' }}"
-                                                       name="registration_no"
-                                                       value="{{ $vehicle->reg_no }}"
-                                                >
+                                                       name="registration_no">
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('registration_no') }}
                                                 </div>
@@ -51,7 +49,7 @@
                                                 <select name="type" id="type" class="select2-with-label-single form-control {{ $errors->has('type') ? 'is-invalid':'' }}">
                                                     <option value=""> {{ __('Pilih Jenis Kenderaan') }}</option>
                                                     @foreach($vehicleTypes as $key => $type)
-                                                        <option value="{{ $key }}" {{ $vehicle->vehicle_code == $key ? "selected": "" }}>{{ $type }}</option>
+                                                        <option value="{{ $key }}">{{ $type }}</option>
                                                     @endforeach
                                                 </select>
                                                 <div class="invalid-feedback">
@@ -63,7 +61,7 @@
                                                 <select name="maker" id="maker" class="select2-with-label-single form-control {{ $errors->has('maker') ? 'is-invalid':'' }}">
                                                     <option value=""> {{ __('Pilih Buatan Kenderaan') }}</option>
                                                     @foreach($vehicleMakes as $key => $maker)
-                                                        <option value="{{ $key }}" {{ $vehicle->make_ == $key ? "selected":"" }}>{{ $maker }}</option>
+                                                        <option value="{{ $key }}">{{ $maker }}</option>
                                                     @endforeach
                                                 </select>
                                                 <div class="invalid-feedback">
@@ -74,9 +72,7 @@
                                                 <label>{{ __('Warna') }}</label>
                                                 <input type="text"
                                                        class="form-control {{ $errors->has('colour') ? 'is-invalid':'' }}"
-                                                       name="colour"
-                                                       value="{{ $vehicle->colour }}"
-                                                >
+                                                       name="colour">
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('colour') }}
                                                 </div>
@@ -88,7 +84,7 @@
                             <div class="card-footer">
                                 <div class="row">
                                     <div class="col-xl-12">
-                                        @include('elements.action_button',["route"=>route('syndicates.show', $syndicateId),"buttons"=>["update","back"]])
+                                        @include('syndicates::elements.action_button',["route"=>route('syndicates.show', $syndicateId),"buttons"=>["save","back"]])
                                     </div>
                                 </div>
                             </div>

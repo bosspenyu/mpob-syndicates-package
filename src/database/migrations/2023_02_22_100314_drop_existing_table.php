@@ -11,20 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('syndicates')->disableForeignKeyConstraints();
-        Schema::connection('syndicates')->dropIfExists('migration');
-        Schema::connection('syndicates')->dropIfExists('syndicate_types');
-        Schema::connection('syndicates')->dropIfExists('syndicate_categories');
-        Schema::connection('syndicates')->dropIfExists('syndicates');
-        Schema::connection('syndicates')->dropIfExists('tags');
-        Schema::connection('syndicates')->dropIfExists('relationships');
-        Schema::connection('syndicates')->dropIfExists('networks');
-        Schema::connection('syndicates')->dropIfExists('syndicate_tags');
-        Schema::connection('syndicates')->dropIfExists('vehicles');
-        Schema::connection('syndicates')->dropIfExists('media');
-        Schema::connection('syndicates')->dropIfExists('notes');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('MIGRATION');
+        Schema::dropIfExists('SYNDICATE_TYPES');
+        Schema::dropIfExists('SYNDICATE_CATEGORIES');
+        Schema::dropIfExists('SYNDICATES');
+        Schema::dropIfExists('TAGS');
+        Schema::dropIfExists('RELATIONSHIPS');
+        Schema::dropIfExists('NETWORKS');
+        Schema::dropIfExists('SYNDICATE_TAGS');
+        Schema::dropIfExists('VEHICLES');
+        Schema::dropIfExists('MEDIA');
+        Schema::dropIfExists('NOTES');
 
-        Schema::connection('syndicates')->enableForeignKeyConstraints();
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::connection('syndicates')->dropIfExists('syndicate_types');
+
     }
 };

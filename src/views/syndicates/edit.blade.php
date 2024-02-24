@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('layouts.app')
+@extends('layouts.master')
 
 {{-- Content --}}
 @section('content')
@@ -13,7 +13,7 @@
                     <ol class="breadcrumb float-md-right">
                         <li class="breadcrumb-item"><a href="{{ route('syndicates.index') }}">{{ __('Sindiket') }}</a></li>
                         <li class="breadcrumb-item">{{ __('Kemaskini') }}</li>
-                        <li class="breadcrumb-item active">{{ $syndicate->name_ }}</li>
+                        <li class="breadcrumb-item active">{{ $syndicate->NAME_ }}</li>
                     </ol>
                 </div>
             </div>
@@ -30,19 +30,19 @@
                         </div>
 
                         <div class="card-body">
-                            @include('elements.alert')
+                            @include('syndicates::elements.alert')
                             <form id="syndicate-profile-form" enctype="multipart/form-data" method="post"
-                                  action="{{route('syndicates.update', $syndicate->id_)}}">
+                                  action="{{route('syndicates.update', $syndicate->ID_)}}">
                                 @method('put') @csrf
                                 <div class="row">
-                                    <div class="{{ $syndicate->category->id == 2 ? "col-md-6":"col-md-12" }}">
+                                    <div class="{{ $syndicate->category->ID == 2 ? "col-md-6":"col-md-12" }}">
                                         <div class="form-row mb-3">
                                             <div class="col-md-4">
                                                 <label>{{ __('Kategori') }}</label>
                                                 <input type="hidden" name="syndicate_category_id"
-                                                       value="{{ $syndicate->category->id }}">
+                                                       value="{{ $syndicate->category->ID }}">
                                                 <input type="text" readonly class="form-control"
-                                                       value="{{ $syndicate->category->name }}">
+                                                       value="{{ $syndicate->category->NAME }}">
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('syndicate_category_id') }}
                                                 </div>
@@ -52,7 +52,7 @@
                                                 <input type="text"
                                                        class="form-control {{ $errors->has('name') ? 'is-invalid':'' }}"
                                                        name="name"
-                                                       value="{{ $syndicate->name_ }}"
+                                                       value="{{ $syndicate->NAME_ }}"
                                                 >
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('name') }}
@@ -67,7 +67,7 @@
                                                     <option value=""> {{ __('Pilih Tahun') }} </option>
                                                     @for($i=2000; $i <= date('Y'); $i++)
                                                         <option
-                                                            value="{{ $i }}" {{ $syndicate->since == $i ? 'selected':'' }}>{{ $i }}</option>
+                                                            value="{{ $i }}" {{ $syndicate->SINCE == $i ? 'selected':'' }}>{{ $i }}</option>
                                                     @endfor
                                                 </select>
                                                 <div class="invalid-feedback">
@@ -83,8 +83,8 @@
                                                         >
                                                     @foreach($cities as $city)
                                                         <option
-                                                            value="{{ $city->code_ }}" {{ $syndicate->city_code_ == $city->code_ ? 'selected':'' }}>{{ ucfirst(strtolower($city->name_)) }}
-                                                            ({{ $city->state->name_ }})
+                                                            value="{{ $city->CODE_ }}" {{ $syndicate->CITY_CODE_ == $city->CODE_ ? 'selected':'' }}>{{ ucfirst(strtolower($city->NAME_)) }}
+                                                            ({{ $city->state->NAME_ }})
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -94,14 +94,14 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <label>{{ __('Logitude') }}</label>
-                                                <input type="text" name="longitude" class="form-control" value="{{ $syndicate->longitude }}">
+                                                <input type="text" name="longitude" class="form-control" value="{{ $syndicate->LONGITUDE }}">
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('longitude') }}
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label>{{ __('Latitude') }}</label>
-                                                <input type="text" name="latitude" class="form-control" value="{{ $syndicate->latitude }}">
+                                                <input type="text" name="latitude" class="form-control" value="{{ $syndicate->LATITUDE }}">
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('Latitude') }}
                                                 </div>
@@ -114,7 +114,7 @@
                                                         id="tags">
                                                     @foreach($tags as $id => $tag)
                                                         <option
-                                                            value="{{ $id }}" {{ in_array($id, $syndicate->tags->pluck('id_')->toArray()) ? 'selected':'' }}>{{ $tag }}</option>
+                                                            value="{{ $id }}" {{ in_array($id, $syndicate->tags->pluck('ID_')->toArray()) ? 'selected':'' }}>{{ $tag }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -125,7 +125,7 @@
                                                 <select name="ref_str_sts_code_" class="form-control">
                                                     @foreach($confirmation as $code => $name)
                                                         <option
-                                                            value="{{ $code }}" {{ $code == $syndicate->ref_str_sts_code_ ? 'selected':'' }}>{{ $name }}</option>
+                                                            value="{{ $code }}" {{ $code == $syndicate->REF_STR_STS_CODE_ ? 'selected':'' }}>{{ $name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -143,7 +143,7 @@
                                                         data-on-color="success"
                                                         data-off-color="danger"
                                                         data-size="small"
-                                                        {{ $syndicate->status == 1 ? 'checked':'' }}
+                                                        {{ $syndicate->STATUS == 1 ? 'checked':'' }}
                                                     >
                                                 </div>
                                             </div>
@@ -159,14 +159,14 @@
                                                         data-size="small"
                                                         data-on-color="success"
                                                         data-off-color="danger"
-                                                        {{ $syndicate->is_restricted ? 'checked':'' }}
+                                                        {{ $syndicate->IS_RESTRICTED ? 'checked':'' }}
                                                     >
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 {{ $syndicate->category->id  == 2 ? : "d-none" }}">
+                                    <div class="col-md-6 {{ $syndicate->category->ID  == 2 ? : "d-none" }}">
                                         <fieldset class="border p-2">
                                             <div class="profile-pic mb-5">
 
@@ -190,7 +190,7 @@
                                                         <option value=""> --- {{ __('Sila Pilih') }} --- </option>
                                                         @foreach($syndicateTypes as $id => $type)
                                                             <option
-                                                                value="{{ $id }}" {{ $syndicate->syndicate_type_id == $id ? "selected" :"" }}>{{ $type }}</option>
+                                                                value="{{ $id }}" {{ $syndicate->SYNDICATE_TYPE_ID == $id ? "selected" :"" }}>{{ $type }}</option>
                                                         @endforeach
                                                     </select>
                                                     <div class="invalid-feedback">
@@ -202,7 +202,7 @@
                                                     <input type="text"
                                                            class="form-control {{ $errors->has('identity_no') ? 'is-invalid':'' }}"
                                                            name="identity_no"
-                                                           value="{{$syndicate->id_no}}"
+                                                           value="{{$syndicate->ID_NO}}"
                                                     >
                                                     <div class="invalid-feedback">
                                                         {{ $errors->first('identity_no') }}
@@ -226,7 +226,7 @@
                                     <button onclick="document.getElementById('syndicate-profile-form').submit();"
                                             class="btn btn-primary btn-xs float-right mx-1"><i
                                             class="fas fa-edit"></i> {{ __('Kemaskini') }}</button>
-                                    @include('elements.action_button', ['route'=>route('syndicates.index'),"buttons"=>["back"]])
+                                    @include('syndicates::elements.action_button', ['route'=>route('syndicates.index'),"buttons"=>["back"]])
                                 </div>
                             </div>
                         </div>
