@@ -9,5 +9,5 @@ class RefRole extends Model
 {
     use HasFactory;
 
-    protected $table = "ref_sys_role";
+    protected $table = "REF_SYS_ROLE";
 }

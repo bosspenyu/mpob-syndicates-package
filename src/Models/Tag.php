@@ -11,9 +11,10 @@ class Tag extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $primaryKey = "id_";
+    protected $primaryKey = "ID_";
     public const CREATED_AT = 'create_dt';
     public const UPDATED_AT = 'update_dt';
+    protected $table = "TAGS";
 
     /**
      * @return MorphToMany

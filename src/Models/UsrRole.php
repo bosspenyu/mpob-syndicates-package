@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class UsrRole extends Model
 {
     use HasFactory;
-    protected $connection = 'syndicates';
-    protected $table = 'usr_role';
+    protected $table = 'USR_ROLE';
 
     public function detail()
     {
-        return $this->hasOne(RefRole::class,'code_','role');
+        return $this->hasOne(RefRole::class,'CODE_','ROLE');
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SyndicateType extends Model
 {
-    public const CREATED_AT = 'create_dt';
-    public const UPDATED_AT = 'update_dt';
+    public const CREATED_AT = 'CREATE_DT';
+    public const UPDATED_AT = 'UPDATE_DT';
+
+    protected $table = "SYNDICATE_TYPES";
 }

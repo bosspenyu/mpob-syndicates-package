@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Relations\MorphPivot;
 
 class RelationshipContent extends MorphPivot
 {
-    protected $table = 'relationships';
+    protected $table = 'RELATIONSHIPS';
 
     /**
      * @return BelongsTo
      */
     public function relationship(): BelongsTo
     {
-        return $this->belongsTo(Relationship::class,'relationship_id');
+        return $this->belongsTo(Relationship::class,'RELATIONSHIP_ID');
     }
 }

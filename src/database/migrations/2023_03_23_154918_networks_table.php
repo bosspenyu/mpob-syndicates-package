@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('NETWORKS', function (Blueprint $table) {
-            $table->foreignUuid('RELATIONSHIP_ID')->references('id_')->on('relationships');
+            $table->foreignUuid('RELATIONSHIP_ID')->references('ID_')->on('RELATIONSHIPS');
             $table->uuidMorphs('FROM');
             $table->uuidMorphs('TO');
         });

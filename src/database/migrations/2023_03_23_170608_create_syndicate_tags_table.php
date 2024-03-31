@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('SYNDICATE_TAGS', function (Blueprint $table) {
-            $table->foreignUuid('TAG_ID_')->references('ID_')->on('tags');
-            $table->foreignUuid('SYNDICATE_ID_')->references('ID_')->on('syndicates');
+            $table->foreignUuid('TAG_ID_')->references('ID_')->on('TAGS');
+            $table->foreignUuid('SYNDICATE_ID_')->references('ID_')->on('SYNDICATES');
         });
     }
 

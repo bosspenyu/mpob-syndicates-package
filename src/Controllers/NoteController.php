@@ -4,6 +4,7 @@ namespace Mpob\Syndicates\Controllers;
 
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Auth;
 use Mpob\Syndicates\Models\Note;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -27,10 +28,10 @@ class NoteController extends Controller
 
         try{
             $note = new Note();
-            $note->description = $request->input('description');
-            $note->insert_dt = $request->input('date');
-            $note->created_by = 1;
-            $note->syndicate_id_ = $syndicateId;
+            $note->DESCRIPTION = $request->input('description');
+            $note->INSERT_DT = $request->input('date');
+            $note->CREATED_BY = Auth::id();
+            $note->SYNDICATE_ID_ = $syndicateId;
             $note->save();
 
             Log::info('Create new note', $note->toArray());

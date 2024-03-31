@@ -37,7 +37,7 @@
                                                 <input type="text"
                                                        class="form-control {{ $errors->has('name_') ? 'is-invalid':'' }}"
                                                        name="name_"
-                                                       value="{{ $relationship->name_ }}"
+                                                       value="{{ $relationship->NAME_ }}"
                                                 >
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('name_') }}

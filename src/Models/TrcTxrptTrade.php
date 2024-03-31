@@ -8,6 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class TrcTxrptTrade extends Model
 {
     use HasFactory;
-    protected $connection = 'syndicates';
-    protected $table = "trc_txrpt_trade";
+    protected $table = "TRC_TXRPT_TRADE";
 }

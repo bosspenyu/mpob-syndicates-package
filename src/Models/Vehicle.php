@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Vehicle extends Model
 {
     use HasFactory, HasUuids;
-    protected $connection = 'syndicates';
-    protected $primaryKey = "id_";
-    public const CREATED_AT = 'create_dt';
-    public const UPDATED_AT = 'update_dt';
+
+    protected $primaryKey = "ID_";
+    public const CREATED_AT = 'CREATE_DT';
+    public const UPDATED_AT = 'UPDATE_DT';
 
 }

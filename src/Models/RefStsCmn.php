@@ -9,5 +9,5 @@ class RefStsCmn extends Model
 {
     use HasFactory;
 
-    protected $table = "ref_sts_cmn";
+    protected $table = "REF_STS_CMN";
 }

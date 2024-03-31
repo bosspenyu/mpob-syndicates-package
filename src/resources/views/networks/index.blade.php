@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">{{ $syndicate->name_ }}</h1>
+                    <h1 class="m-0">{{ $syndicate->NAME_ }}</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -34,7 +34,7 @@
                         <div class="card-header">
                             <h4 class="card-title">{{ __('Senarai Rangkaian') }}</h4>
                             <div class="float-right">
-                                <a href="{{ route('syndicates.show', $syndicate->id_) }}"
+                                <a href="{{ route('syndicates.show', $syndicate->ID_) }}"
                                    class="btn btn-default btn-xs float-right mx-1">
                                     <i class="fas fa-angle-double-left"></i> {{ __('Kembali') }}</a>
                             </div>
@@ -65,31 +65,31 @@
                                                             <button
                                                                 data-toggle="tooltip"
                                                                 title="{{ __('Tambah Rangkaian') }}"
-                                                                onclick="document.getElementById('form-link-syndicate-{{$list->id_}}').submit();"
+                                                                onclick="document.getElementById('form-link-syndicate-{{$list->ID_}}').submit();"
                                                                 class="btn btn-default custom-button-primary btn-flat"><i class="fas fa-handshake"></i>
                                                             </button>
                                                             <button
                                                                 data-toggle="tooltip"
                                                                 title="{{ __('Rangkaian Detail') }}"
-                                                                onclick="document.getElementById('form-chart-syndicate-{{$list->id_}}').submit();"
+                                                                onclick="document.getElementById('form-chart-syndicate-{{$list->ID_}}').submit();"
                                                                 class="btn btn-default custom-button-primary btn-xs">
                                                                 <i class="fas fa-network-wired"></i>
                                                             </button>
                                                         </div>
 
-                                                        <form target="_blank" id="form-chart-syndicate-{{$list->id_}}" method="get"
+                                                        <form target="_blank" id="form-chart-syndicate-{{$list->ID_}}" method="get"
                                                               action="{{ route('orgchart.index') }}">
                                                             @csrf
-                                                            <input type="hidden" name="model_id" value="{{$list->id_}}">
+                                                            <input type="hidden" name="model_id" value="{{$list->ID_}}">
                                                             <input type="hidden" name="model_type"
                                                                    value="{{$list->model}}">
                                                         </form>
                                                     </td>
                                                     <td>
-                                                        <form id="form-link-syndicate-{{$list->id_}}" method="post"
-                                                              action="{{ route('networks.link', $syndicate->id_) }}">
+                                                        <form id="form-link-syndicate-{{$list->ID_}}" method="post"
+                                                              action="{{ route('networks.link', $syndicate->ID_) }}">
                                                             @csrf
-                                                            <input type="hidden" name="model_id" value="{{$list->id_}}">
+                                                            <input type="hidden" name="model_id" value="{{$list->ID_}}">
                                                             <input type="hidden" name="model_type"
                                                                    value="{{$list->model}}">
                                                             <input type="hidden" name="advance_search"
@@ -117,11 +117,11 @@
                                                         </form>
                                                     </td>
                                                     <td>{{ ($syndicates->currentpage()-1) * $syndicates->perpage() + $loop->index + 1  }}</td>
-                                                    <td>{{ $list->name_ }}</td>
-                                                    <td>{{ $list->lcn_no == null ? __('Tiada Data'): $list->lcn_no}}</td>
-                                                    <td>{{ $list->type }}</td>
-                                                    <td>{{ $list->id_no == null ? __('Tiada Data'): $list->id_no}} </td>
-                                                    <td>{!! $syndicate->status ? '<span class="badge badge-success">'.__('Aktif').'</span>':'<span class="badge badge-danger">'.__('Tidak Aktif').'</span>' !!}</td>
+                                                    <td>{{ $list->NAME_ }}</td>
+                                                    <td>{{ $list->LCN_NO == null ? __('Tiada Data'): $list->LCN_NO}}</td>
+                                                    <td>{{ $list->TYPE }}</td>
+                                                    <td>{{ $list->ID_NO == null ? __('Tiada Data'): $list->ID_NO}} </td>
+                                                    <td>{!! $syndicate->STATUS ? '<span class="badge badge-success">'.__('Aktif').'</span>':'<span class="badge badge-danger">'.__('Tidak Aktif').'</span>' !!}</td>
                                                 </tr>
                                             @endforeach
                                             </tbody>

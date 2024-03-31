@@ -9,8 +9,8 @@ class RefDivisionUnit extends Model
 {
     use HasFactory;
 
-    protected $table="ref_division_unit";
-    protected $primaryKey="code_";
+    protected $table="REF_DIVISION_UNIT";
+    protected $primaryKey="CODE_";
     public $incrementing = false;
     protected $keyType = "string";
 }

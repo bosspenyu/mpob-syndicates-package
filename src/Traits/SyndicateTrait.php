@@ -43,7 +43,7 @@ trait SyndicateTrait
                         $newTag->NAME_ = "#".$tag;
                         $newTag->save();
 
-                        $this->tags[] = $newTag->id_;
+                        $this->tags[] = $newTag->ID_;
 
                         Log::info('Create New Tag', $newTag->toArray());
                     }catch (\Throwable $throwable){

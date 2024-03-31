@@ -14,7 +14,7 @@ use Mpob\Syndicates\Models\SyndicateType;
 use Mpob\Syndicates\Models\TrcAcc;
 use Mpob\Syndicates\Models\TrcPalmTrade;
 use Mpob\Syndicates\Models\TrcTxrptTrade;
-use App\Traits\SyndicateTrait;
+use Mpob\Syndicates\Traits\SyndicateTrait;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -58,7 +58,7 @@ class NetworkController extends Controller
 
         $states = RefCountryState::with('cities')->get();
         $cities = RefDistrict::with('state')->get();
-        $relationships = Relationship::pluck('name_', 'id_');
+        $relationships = Relationship::pluck('NAME_', 'ID_');
 
         return view('syndicates::networks.index', compact(
             'syndicates',
@@ -91,19 +91,19 @@ class NetworkController extends Controller
             //from
             $syndicate = Syndicate::find($syndicateId);
             $syndicate->networks()->syncWithPivotValues([
-                "to_id"=>$modelId,
+                "TO_ID"=>$modelId,
             ],[
-                "relationship_id"=>$request->input('relationship_id'),
-                "to_type"=>$modelType,
+                "RELATIONSHIP_ID"=>$request->input('relationship_id'),
+                "TO_TYPE"=>$modelType,
             ], false);
 
             //to
             $model = $modelType::find($modelId);
             $model->networks()->syncWithPivotValues([
-                "to_id"=>$syndicate->id_,
+                "TO_ID"=>$syndicate->ID_,
             ],[
-                "relationship_id"=>$request->input('relationship_id'),
-                "to_type"=>$model_prefix. "\\" . "Syndicate",
+                "RELATIONSHIP_ID"=>$request->input('relationship_id'),
+                "TO_TYPE"=>$model_prefix. "\\" . "Syndicate",
             ], false);
 
 
@@ -134,11 +134,11 @@ class NetworkController extends Controller
 
             //from
             $syndicate = Syndicate::find($syndicateId);
-            $syndicate->networks()->detach(["to_id"=>$modelId]);
+            $syndicate->networks()->detach(["TO_ID"=>$modelId]);
 
             //to
             $model = $modelType::find($modelId);
-            $model->networks()->detach(["to_id"=>$syndicate->id_]);
+            $model->networks()->detach(["TO_ID"=>$syndicate->id_]);
 
 
         } catch (Throwable $throwable) {

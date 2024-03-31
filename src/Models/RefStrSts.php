@@ -11,4 +11,5 @@ use Illuminate\Database\Eloquent\Model;
 class RefStrSts extends Model
 {
     use HasFactory;
+    protected $table = "REF_STR_STS";
 }

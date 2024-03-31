@@ -29,6 +29,8 @@ class Syndicate extends Model implements HasMedia
     public const UPDATED_AT = 'UPDATE_DT';
     public const DELETED_AT = 'DELETED_DT';
 
+    protected $table = "SYNDICATES";
+
     /**
      * @return BelongsToMany
      */

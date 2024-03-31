@@ -13,8 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    protected $connection = 'syndicates';
-    protected $table = 'usr';
+    protected $table = 'USR';
     protected $appends = ['region','auth_role'];
 
     /**
@@ -23,9 +22,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'NAME',
+        'EMAIL',
+        'PASSWORD',
     ];
 
     /**
@@ -34,8 +33,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'PASSWORD',
+        'REMEMBER_TOKEN',
     ];
 
     /**
@@ -44,7 +43,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'EMAIL_VERIFIED_AT' => 'datetime',
     ];
 
     /**
@@ -52,7 +51,7 @@ class User extends Authenticatable
      */
     public function roles(): HasMany
     {
-        return $this->hasMany(UsrRole::class,'usr_id');
+        return $this->hasMany(UsrRole::class,'USR_ID');
     }
 
     /**
@@ -60,7 +59,7 @@ class User extends Authenticatable
      */
     public function staff(): HasOne
     {
-        return $this->hasOne(TrcAccStaff::class,'usr_id');
+        return $this->hasOne(TrcAccStaff::class,'USR_ID');
     }
 
     public function getRegionAttribute()

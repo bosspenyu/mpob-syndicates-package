@@ -9,6 +9,8 @@ class SyndicateCategory extends Model
 {
     use HasFactory;
 
-    public const CREATED_AT = 'create_dt';
-    public const UPDATED_AT = 'update_dt';
+    public const CREATED_AT = 'CREATE_DT';
+    public const UPDATED_AT = 'UPDATE_DT';
+
+    protected $table = "SYNDICATE_CATEGORIES";
 }

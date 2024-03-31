@@ -11,19 +11,14 @@ class SyndicatesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerPublishables();
         /*
          * Optional methods to load your package assets
          */
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'syndicates');
-        $this->loadViewsFrom(__DIR__ . '/views', 'syndicates');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'syndicates');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
-
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/views' => base_path('resources/views/mpob-modules'),
-            ]);
-        }
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
     }
 
@@ -38,5 +33,16 @@ class SyndicatesServiceProvider extends ServiceProvider
         $this->app->singleton('syndicates', function () {
             return new Syndicates;
         });
+    }
+
+    protected function registerPublishables(): void
+    {
+        if (!$this->app->runningInConsole()) {
+            return;
+        }
+        $this->publishes([
+            __DIR__ . '/resources/views' => resource_path('views/vendor/syndicates'),
+        ], 'views');
+
     }
 }

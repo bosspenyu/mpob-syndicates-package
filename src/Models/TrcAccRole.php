@@ -9,7 +9,5 @@ class TrcAccRole extends Model
 {
     use HasFactory;
 
-    protected $connection = 'syndicates';
-
-    protected $table = "trc_acc_role";
+    protected $table = "TRC_ACC_ROLE";
 }

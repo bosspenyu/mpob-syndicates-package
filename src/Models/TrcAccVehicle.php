@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TrcAccVehicle extends Model
 {
     use HasFactory;
-    protected $connection = 'syndicates';
-    protected $primaryKey = "id_";
-    protected $table ="trc_acc_vehicle";
+    protected $primaryKey = "ID_";
+    protected $table ="TRC_ACC_VEHICLE";
 }

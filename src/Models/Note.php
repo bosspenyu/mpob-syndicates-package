@@ -12,7 +12,7 @@ class Note extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia, HasUuids;
 
-    protected $primaryKey = "id_";
+    protected $primaryKey = "ID_";
     public const CREATED_AT = 'create_dt';
     public const UPDATED_AT = 'update_dt';
 

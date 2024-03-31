@@ -15,8 +15,8 @@ return new class extends Migration
 
             $table->uuid('ID_')->primary();
             $table->string('NAME_');
-            $table->foreignId('SYNDICATE_CATEGORY_ID')->references('id')->on('syndicate_categories');
-            $table->foreignId('SYNDICATE_TYPE_ID')->references('id')->on('syndicate_types');
+            $table->foreignId('SYNDICATE_CATEGORY_ID')->references('ID_')->on('SYNDICATE_CATEGORIES');
+            $table->foreignId('SYNDICATE_TYPE_ID')->references('ID_')->on('SYNDICATE_TYPES');
             $table->string('REF_STR_STS_CODE_', 1)->default('N');
             $table->string('ID_NO')->nullable();
             $table->boolean('STATUS')->default(1);

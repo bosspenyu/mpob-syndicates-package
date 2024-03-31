@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('NOTES', function (Blueprint $table) {
             $table->uuid('ID_')->primary();
             $table->longText('DESCRIPTION');
-            $table->foreignUuid('SYNDICATE_ID_')->references('ID_')->on('syndicates');
+            $table->foreignUuid('SYNDICATE_ID_')->references('ID_')->on('SYNDICATES');
             $table->integer('CREATED_BY',false,true);
             $table->timestamp('INSERT_DT')->nullable();
             $table->timestamp('CREATE_DT')->nullable();

@@ -38,17 +38,18 @@ class RelationshipController extends Controller
     /**
      * @param Request $request
      * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $this->validate($request,[
-            "name_" => "required|unique:relationships,name_"
+            "name_" => "required|unique:RELATIONSHIPS,NAME_"
         ]);
 
         try {
             DB::beginTransaction();
             $relationship = new Relationship();
-            $relationship->name_ = $request->input('name_');
+            $relationship->NAME_ = $request->input('name_');
             $relationship->save();
             DB::commit();
         } catch (Throwable $throwable){
@@ -64,7 +65,7 @@ class RelationshipController extends Controller
      * @param $id
      * @return View
      */
-    public function edit($id)
+    public function edit($id): View
     {
         $relationship = Relationship::find($id);
         return view('syndicates::relationships.edit', compact('relationship','id'));
@@ -76,16 +77,16 @@ class RelationshipController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
         $this->validate($request,[
-            "name_" => "required|unique:relationships,name_,".$id.",id_"
+            "name_" => "required|unique:RELATIONSHIPS,NAME_,".$id.",ID_"
         ]);
 
         try {
             DB::beginTransaction();
             $relationship = Relationship::find($id);
-            $relationship->name_ = $request->input('name_');
+            $relationship->NAME_ = $request->input('name_');
             $relationship->save();
             DB::commit();
         } catch (Throwable $throwable){
@@ -101,7 +102,7 @@ class RelationshipController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         try {
             DB::beginTransaction();
@@ -121,7 +122,7 @@ class RelationshipController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function restore($id)
+    public function restore($id): RedirectResponse
     {
 
         try {

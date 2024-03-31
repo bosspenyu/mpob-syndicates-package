@@ -9,8 +9,10 @@ class Media extends BaseMedia
 {
     use HasFactory;
 
+    protected $table = "MEDIA";
+
     public function uploaded_by()
     {
-        return $this->belongsTo(User::class, 'custom_properties.uploaded_by');
+        return $this->belongsTo(User::class, 'CUSTOM_PROPERTIES.UPLOADED_BY');
     }
 }

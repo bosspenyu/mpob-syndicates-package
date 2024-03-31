@@ -4,6 +4,7 @@ namespace Mpob\Syndicates\Controllers;
 
 use App\Http\Controllers\Controller;
 
+use Illuminate\Support\Facades\Schema;
 use Mpob\Syndicates\Models\RefDistrict;
 use Mpob\Syndicates\Models\RefCountryState;
 use Mpob\Syndicates\Models\RefStrSts;
@@ -97,8 +98,8 @@ class SyndicateController extends Controller
         }
 
         $syndicates = $query->paginate(10);
-        $cities = collect();//RefDistrict::with('state')->get();
-        $states = collect();//RefCountryState::pluck('NAME_', 'CODE_');
+        $cities = Schema::hasTable('REF_DISTRICT') ? RefDistrict::with('state')->get():collect();
+        $states = Schema::hasTable('REF_COUNTRY_STATE') ? RefCountryState::pluck('NAME_', 'CODE_'):collect();
 
         return view('syndicates::syndicates.index', compact(
             'syndicates',
@@ -114,10 +115,10 @@ class SyndicateController extends Controller
      */
     public function create(): View
     {
-        $cities = collect();//RefDistrict::with('state')->get();
+        $cities = Schema::hasTable('REF_DISTRICT') ? RefDistrict::with('state')->get():collect();
         $tags = Tag::pluck('NAME_', 'ID_');
-        $syndicateTypes = SyndicateType::whereIn('ID', [1, 2])->pluck('NAME', 'ID');
-        $syndicateCategories = SyndicateCategory::pluck('NAME', 'ID');
+        $syndicateTypes = SyndicateType::whereIn('ID_', [1, 2])->pluck('NAME_', 'ID_');
+        $syndicateCategories = SyndicateCategory::pluck('NAME_', 'ID_');
 
         return view('syndicates::syndicates.create', compact(
             'cities',
@@ -135,7 +136,7 @@ class SyndicateController extends Controller
     {
 
         $request->validate([
-            'name' => $request->input('syndicate_category_id') == 1 ? "unique:syndicates,name_" : "" | 'required',
+            'name' => $request->input('syndicate_category_id') == 1 ? "unique:SYNDICATES,NAME_" : "" | 'required',
             'since' => 'required',
             'city_code' => 'required',
             'identity_no' => $request->input('syndicate_category_id') == 2 ? 'required' : '',
@@ -162,7 +163,7 @@ class SyndicateController extends Controller
             if ($request->hasFile('syndicate-profile-image') && $request->file('syndicate-profile-image')->isValid()) {
                 $syndicate->addMediaFromRequest('syndicate-profile-image')
                     ->withCustomProperties([
-                        'uploaded_by' => Auth::id()
+                        'UPLOADED_BY' => Auth::id()
                     ])->toMediaCollection('syndicate-profile-image');
             }
 
@@ -195,7 +196,7 @@ class SyndicateController extends Controller
         $cities = RefDistrict::with('state')->get();
         $tags = Tag::pluck('NAME_', 'ID_');
         $syndicateCategories = SyndicateCategory::all();
-        $syndicateTypes = SyndicateType::pluck('NAME', 'ID');
+        $syndicateTypes = SyndicateType::pluck('NAME_', 'ID_');
         $confirmation = RefStrSts::pluck('NAME_', 'CODE_');
 
         return view('syndicates::syndicates.show', compact(
@@ -226,7 +227,7 @@ class SyndicateController extends Controller
         $cities = RefDistrict::with('state')->get();
         $tags = Tag::pluck('NAME_', 'ID_');
         $syndicateCategories = SyndicateCategory::all();
-        $syndicateTypes = SyndicateType::pluck('NAME', 'ID');
+        $syndicateTypes = SyndicateType::pluck('NAME_', 'ID_');
         $confirmation = RefStrSts::pluck('NAME_', 'CODE_');
 
 

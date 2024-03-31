@@ -24,7 +24,7 @@ class RelationshipSeeder extends Seeder
 
         foreach ($data as $d){
             $model = new Relationship();
-            $model->name_ = $d['name_'];
+            $model->NAME_ = $d['NAME_'];
             $model->save();
         }
     }

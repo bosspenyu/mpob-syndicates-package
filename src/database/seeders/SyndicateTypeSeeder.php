@@ -14,15 +14,15 @@ class SyndicateTypeSeeder extends Seeder
     {
         SyndicateType::truncate();
         $data = [
-            ["NAME" => "Warganegara"],
-            ["NAME" => "Bukan Warganegara"],
-            ["NAME" => "Syarikat"],
-            ["NAME" => "Kumpulan"]
+            ["NAME_" => "Warganegara"],
+            ["NAME_" => "Bukan Warganegara"],
+            ["NAME_" => "Syarikat"],
+            ["NAME_" => "Kumpulan"]
         ];
 
         foreach ($data as $d){
             $model = new SyndicateType();
-            $model->name = $d['name'];
+            $model->NAME_ = $d['NAME_'];
             $model->save();
         }
     }

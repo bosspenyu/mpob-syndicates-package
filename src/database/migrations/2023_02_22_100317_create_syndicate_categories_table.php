@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('SYNDICATE_CATEGORIES', function (Blueprint $table) {
-            $table->id();
-            $table->string('NAME');//berkumpulan, sendirian
+            $table->id('ID_');
+            $table->string('NAME_');//berkumpulan, sendirian
             $table->timestamp('CREATE_DT')->nullable();
             $table->timestamp('UPDATE_DT')->nullable();
         });

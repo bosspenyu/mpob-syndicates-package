@@ -34,7 +34,7 @@ class DocumentController extends Controller
                     ->usingName($newName)
                     ->usingFileName($newFileName)
                     ->withCustomProperties([
-                        'uploaded_by' => Auth::id()
+                        'UPLOADED_BY' => Auth::id()
                     ])
                     ->toMediaCollection('syndicate-documents');
             }

@@ -53,20 +53,20 @@
                                                     @foreach($relationships as $relationship)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $relationship->name_ }}</td>
-                                                            <td>{{ $relationship->create_dt->format('d/m/Y') }}</td>
+                                                            <td>{{ $relationship->NAME_ }}</td>
+                                                            <td>{{ $relationship->CREATE_DT->format('d/m/Y') }}</td>
                                                             <td>
-                                                                <form id="form-relationship-{{$relationship->id_}}" method="post"
-                                                                      action="{{ route('relationships.destroy', $relationship->id_) }}">
+                                                                <form id="form-relationship-{{$relationship->ID_}}" method="post"
+                                                                      action="{{ route('relationships.destroy', $relationship->ID_) }}">
                                                                     @csrf
                                                                     @method('delete')
                                                                 </form>
                                                                 <div class="button-group">
-                                                                    <a href="{{ route('relationships.edit', $relationship->id_) }}"
+                                                                    <a href="{{ route('relationships.edit', $relationship->ID_) }}"
                                                                        class="btn btn-xs btn-secondary"><i class="fas fa-edit"></i>
                                                                     </a>
                                                                     <a href="javascript:void(0);"
-                                                                       onclick="if(confirm('Anda pasti untuk memadam rekod ini?'))document.getElementById('form-relationship-{{$relationship->id_}}').submit();"
+                                                                       onclick="if(confirm('Anda pasti untuk memadam rekod ini?'))document.getElementById('form-relationship-{{$relationship->ID_}}').submit();"
                                                                        class="btn btn-xs btn-danger"><i class="fas fa-trash"></i>
                                                                     </a>
 
@@ -93,18 +93,27 @@
                                                     @foreach($trashRelationships as $relationship)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $relationship->name_ }}</td>
-                                                            <td>{{ $relationship->create_dt->format('d/m/Y') }}</td>
+                                                            <td>{{ $relationship->NAME_ }}</td>
+                                                            <td>{{ $relationship->CREATE_DT->format('d/m/Y') }}</td>
                                                             <td>
-                                                                <form id="form-relationship-restore-{{$relationship->id_}}" method="post"
-                                                                      action="{{ route('relationships.restore', $relationship->id_) }}">
+                                                                <form id="form-relationship-destroy-{{$relationship->ID_}}" method="post"
+                                                                      action="{{ route('relationships.destroy', $relationship->ID_) }}">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                </form>
+                                                                <form id="form-relationship-restore-{{$relationship->ID_}}" method="post"
+                                                                      action="{{ route('relationships.restore', $relationship->ID_) }}">
                                                                     @csrf
                                                                     @method('post')
                                                                 </form>
                                                                 <div class="button-group">
                                                                     <a href="javascript:void(0);"
-                                                                       onclick="if(confirm('Anda pasti untuk memadam rekod ini?'))document.getElementById('form-relationship-restore-{{$relationship->id_}}').submit();"
-                                                                       class="btn btn-xs btn-danger"><i class="fas fa-trash-restore"></i>
+                                                                       onclick="if(confirm('Anda pasti untuk mengaktif rekod ini?'))document.getElementById('form-relationship-restore-{{$relationship->ID_}}').submit();"
+                                                                       class="btn btn-xs btn-success"><i class="fas fa-trash-restore"></i>
+                                                                    </a>
+                                                                    <a href="javascript:void(0);"
+                                                                       onclick="if(confirm('Anda pasti untuk memadam rekod ini?'))document.getElementById('form-relationship-destroy-{{$relationship->ID_}}').submit();"
+                                                                       class="btn btn-xs btn-danger"><i class="fas fa-trash"></i>
                                                                     </a>
                                                                 </div>
                                                             </td>

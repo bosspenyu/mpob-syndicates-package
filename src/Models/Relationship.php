@@ -11,18 +11,18 @@ class Relationship extends Model
 {
     use HasFactory, HasUuids, SoftDeletes;
 
-    protected $primaryKey = "id_";
-    public const CREATED_AT = 'create_dt';
-    public const UPDATED_AT = 'update_dt';
+    protected $primaryKey = "ID_";
+    public const CREATED_AT = 'CREATE_DT';
+    public const UPDATED_AT = 'UPDATE_DT';
 
     public function syndicate()
     {
-        return $this->hasOne(Network::class,'relationship_id','id_');
+        return $this->hasOne(Network::class,'RELATIONSHIP_ID','ID_');
     }
 
     public function trc_acc()
     {
-        return $this->hasOne(Network::class,'relationship_id','id_');
+        return $this->hasOne(Network::class,'RELATIONSHIP_ID','ID_');
     }
 
 }

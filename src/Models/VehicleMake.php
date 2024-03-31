@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VehicleMake extends Model
 {
     use HasFactory;
-    protected $connection = 'syndicates';
-    protected $table = 'ref_vehicle_make';
-    protected $primaryKey = 'code_';
+
+    protected $table = 'REF_VEHICLE_MAKE';
+    protected $primaryKey = 'CODE_';
 }

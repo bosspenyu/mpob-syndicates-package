@@ -9,5 +9,6 @@ class ExtLcn extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "id_";
+    protected $primaryKey = "ID_";
+    protected $table = "EXT_LCN";
 }

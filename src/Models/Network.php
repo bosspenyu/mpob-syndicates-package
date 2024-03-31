@@ -17,13 +17,14 @@ class Network extends Model
 
     protected $primaryKey = false;
     public $incrementing = false;
+    protected $table = 'NETWORK';
 
     /**
      * @return BelongsTo
      */
     public function relationship(): BelongsTo
     {
-        return $this->belongsTo(Relationship::class,'relationship_id');
+        return $this->belongsTo(Relationship::class,'RELATIONSHIP_ID');
     }
 
     public function from()

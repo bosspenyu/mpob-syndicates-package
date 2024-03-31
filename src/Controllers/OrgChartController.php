@@ -43,13 +43,13 @@ class OrgChartController extends Controller
 
         foreach ($children as $child){
             $orgChartData->push([
-                "key" => $child->id_,
-                "text" => $child->name_,
+                "key" => $child->ID_,
+                "text" => $child->NAME_,
             ]);
             $label->push([
-                "from"=>$parent->id_,
-                "to"=>$child->id_,
-                "text"=>$child->pivot->relationship->name_
+                "from"=>$parent->ID_,
+                "to"=>$child->ID_,
+                "text"=>$child->pivot->relationship->NAME_
             ]);
 
             list($otherParent, $otherChildren) = $this->getNode(class_basename($child), $child->id_);
@@ -58,13 +58,13 @@ class OrgChartController extends Controller
                 $ry = $this->point(100);
                 foreach ($otherChildren as $otherC) {
                     $orgChartData->push([
-                        "key" => $otherC->id_,
-                        "text" => $otherC->name_,
+                        "key" => $otherC->ID_,
+                        "text" => $otherC->NAME_,
                     ]);
                     $label->push([
-                        "from"=>$otherParent->id_,
-                        "to"=>$otherC->id_,
-                        "text"=>$otherC->pivot->relationship->name_
+                        "from"=>$otherParent->ID_,
+                        "to"=>$otherC->ID_,
+                        "text"=>$otherC->pivot->relationship->NAME_
                     ]);
                     $rx+=$this->point($rx*5);
                     $ry+=$this->point($ry*5);

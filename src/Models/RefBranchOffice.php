@@ -9,8 +9,8 @@ class RefBranchOffice extends Model
 {
     use HasFactory;
 
-    protected $table = "ref_branch_office";
-    protected $primaryKey = "code_";
+    protected $table = "REF_BRANCH_OFFICE";
+    protected $primaryKey = "CODE_";
     public $incrementing = false;
     protected $keyType = "string";
 }

@@ -14,13 +14,13 @@ class SyndicateCategorySeeder extends Seeder
     {
         SyndicateCategory::truncate();
         $data = [
-            ["NAME" => "Berkumpulan"],
-            ["NAME" => "Sendirian"]
+            ["NAME_" => "Berkumpulan"],
+            ["NAME_" => "Sendirian"]
         ];
 
         foreach ($data as $d){
             $model = new SyndicateCategory();
-            $model->name = $d['name'];
+            $model->NAME_ = $d['NAME_'];
             $model->save();
         }
     }

@@ -67,8 +67,8 @@ class VehicleController extends Controller
      */
     public function show($syndicateId, $vehicleId): View
     {
-        $vehicleTypes = VehicleType::pluck('name_','code_');
-        $vehicleMakes = VehicleMake::pluck('name_','code_');
+        $vehicleTypes = VehicleType::pluck('NAME_','CODE_');
+        $vehicleMakes = VehicleMake::pluck('NAME_','CODE_');
         $vehicle = Vehicle::find($vehicleId);
 
         return view('syndicates::vehicles.show', compact(
@@ -138,10 +138,10 @@ class VehicleController extends Controller
      * @return void
      */
     protected function columns($model, $request, $syndicateId){
-        $model->REG_NO = $request->input('registration_no');
-        $model->VEHICLE_CODE = $request->input('type');
+        $model->REG_NO_ = $request->input('registration_no');
+        $model->VEHICLE_CODE_ = $request->input('type');
         $model->MAKE_ = $request->input('maker');
-        $model->COLOUR = $request->input('colour');
+        $model->COLOUR_ = $request->input('colour');
         $model->SYNDICATE_ID_ = $syndicateId;
         $model->save();
     }

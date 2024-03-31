@@ -35,14 +35,14 @@
                                   action="{{route('syndicates.update', $syndicate->ID_)}}">
                                 @method('put') @csrf
                                 <div class="row">
-                                    <div class="{{ $syndicate->category->ID == 2 ? "col-md-6":"col-md-12" }}">
+                                    <div class="{{ $syndicate->category->ID_ == 2 ? "col-md-6":"col-md-12" }}">
                                         <div class="form-row mb-3">
                                             <div class="col-md-4">
                                                 <label>{{ __('Kategori') }}</label>
                                                 <input type="hidden" name="syndicate_category_id"
-                                                       value="{{ $syndicate->category->ID }}">
+                                                       value="{{ $syndicate->category->ID_ }}">
                                                 <input type="text" readonly class="form-control"
-                                                       value="{{ $syndicate->category->NAME }}">
+                                                       value="{{ $syndicate->category->NAME_ }}">
                                                 <div class="invalid-feedback">
                                                     {{ $errors->first('syndicate_category_id') }}
                                                 </div>
@@ -67,7 +67,7 @@
                                                     <option value=""> {{ __('Pilih Tahun') }} </option>
                                                     @for($i=2000; $i <= date('Y'); $i++)
                                                         <option
-                                                            value="{{ $i }}" {{ $syndicate->SINCE == $i ? 'selected':'' }}>{{ $i }}</option>
+                                                            value="{{ $i }}" {{ $syndicate->SINCE_ == $i ? 'selected':'' }}>{{ $i }}</option>
                                                     @endfor
                                                 </select>
                                                 <div class="invalid-feedback">
