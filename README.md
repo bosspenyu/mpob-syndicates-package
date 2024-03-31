@@ -4,14 +4,19 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/mpob/syndicates.svg?style=flat-square)](https://packagist.org/packages/mpob/syndicates)
 ![GitHub Actions](https://github.com/mpob/syndicates/actions/workflows/main.yml/badge.svg)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+This package required 
+```bash
+PHP >= 8.1
+composer required spatie/laravel-medialibrary
+composer required laravel/ui
+```
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require mpob/syndicates
+composer require mpob/syndicates:dev-dev
 ```
 
 ## Usage
@@ -40,7 +45,7 @@ If you discover any security related issues, please email mu.resources.developme
 
 ## Credits
 
--   [Mu](https://github.com/mpob)
+-   [Mu](https://github.com/bosspenyu)
 -   [All Contributors](../../contributors)
 
 ## License
