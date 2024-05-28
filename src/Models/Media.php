@@ -10,6 +10,8 @@ class Media extends BaseMedia
     use HasFactory;
 
     protected $table = "MEDIA";
+    protected $primaryKey = "ID_";
+    protected $keyType = "string";
 
     public function uploaded_by()
     {

@@ -9,6 +9,8 @@ class VehicleType extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = "ID_";
+    protected $keyType = "string";
+
     protected $table = 'REF_VEHICLE_TYPE';
-    protected $primaryKey = 'CODE_';
 }

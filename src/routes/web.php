@@ -32,7 +32,7 @@ Route::group(["middleware" => "web"], function () {
         Route::get('/', [SyndicateController::class, 'index'])->name('syndicates.index');
         Route::get('/create', [SyndicateController::class, 'create'])->name('syndicates.create');
         Route::get('/{syndicate}/show', [SyndicateController::class, 'show'])->name('syndicates.show');
-        Route::post('/', [SyndicateController::class, 'store'])->name('syndicates.store');
+        Route::post('/store', [SyndicateController::class, 'store'])->name('syndicates.store');
         Route::get('{syndicate}/show', [SyndicateController::class, 'show'])->name('syndicates.show');
         Route::get('{syndicate}/edit', [SyndicateController::class, 'edit'])->name('syndicates.edit');
         Route::put('{syndicate}/update', [SyndicateController::class, 'update'])->name('syndicates.update');

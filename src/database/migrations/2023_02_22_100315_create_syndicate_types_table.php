@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('SYNDICATE_TYPES', function (Blueprint $table) {
             $table->id('ID_');
-            $table->string('NAME');//warganegara, Bukan Warga Negara, melayu, cina, india, campuran
+            $table->string('NAME_');//warganegara, Bukan Warga Negara, melayu, cina, india, campuran
             $table->timestamp('CREATE_DT')->nullable();
             $table->timestamp('UPDATE_DT')->nullable();
         });

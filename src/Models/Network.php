@@ -17,7 +17,7 @@ class Network extends Model
 
     protected $primaryKey = false;
     public $incrementing = false;
-    protected $table = 'NETWORK';
+    protected $table = 'NETWORKS';
 
     /**
      * @return BelongsTo

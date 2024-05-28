@@ -2,7 +2,7 @@
 
     @if($page == "edit")
         <div class="float-right m-1">
-            @include('syndicates::elements.action_button',["route"=>route('networks.index', $syndicate->id_),"buttons" => ["add"]])
+            @include('syndicates::elements.action_button',["route"=>route('networks.index', $syndicate->ID_),"buttons" => ["add"]])
         </div>
     @endif
     <div class="table-responsive">

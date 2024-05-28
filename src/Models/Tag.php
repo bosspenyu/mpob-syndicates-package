@@ -12,6 +12,8 @@ class Tag extends Model
     use HasFactory, HasUuids;
 
     protected $primaryKey = "ID_";
+    protected $keyType = "string";
+
     public const CREATED_AT = 'create_dt';
     public const UPDATED_AT = 'update_dt';
     protected $table = "TAGS";

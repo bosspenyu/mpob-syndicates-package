@@ -51,7 +51,7 @@
                                             <tr>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a data-toggle="tooltip" title="Butiran" class="btn btn-default custom-button-primary"
+                                                        <a data-toggle="tooltip" title="Butiran" class="btn btn-default btn-xs custom-button-primary"
                                                            href="{{ route('syndicates.show', $syndicate->ID_) }}">
                                                             <i class="fas fa-book-open"></i>
                                                         </a>

@@ -1,4 +1,4 @@
-<DIV CLASS="TAB-PANE FADE" ID="NOTES">
+<div class="tab-pane fade" id="notes">
     <div class="pt-4">
         @if($page == "edit")
         <form method="post" action="{{ route('notes.store', $syndicate->ID_) }}">

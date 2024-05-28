@@ -218,13 +218,13 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <button onclick="document.getElementById('syndicate-profile-archive').submit();"
-                                            class="btn btn-dark btn-xs float-right mx-1"><i
+                                            class="btn btn-dark float-right mx-1"><i
                                             class="fas fa-archive"></i> {{ __('Arkib') }}</button>
                                     <button onclick="if(confirm('Anda pasti untuk memadam rekod ini?'))document.getElementById('syndicate-profile-destroy').submit();"
-                                            class="btn btn-danger btn-xs float-right mx-1"><i
+                                            class="btn btn-danger float-right mx-1"><i
                                             class="fas fa-trash"></i> {{ __('Padam') }}</button>
                                     <button onclick="document.getElementById('syndicate-profile-form').submit();"
-                                            class="btn btn-primary btn-xs float-right mx-1"><i
+                                            class="btn btn-primary float-right mx-1"><i
                                             class="fas fa-edit"></i> {{ __('Kemaskini') }}</button>
                                     @include('syndicates::elements.action_button', ['route'=>route('syndicates.index'),"buttons"=>["back"]])
                                 </div>

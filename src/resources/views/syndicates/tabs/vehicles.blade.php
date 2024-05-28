@@ -1,7 +1,7 @@
-<DIV CLASS="TAB-PANE FADE" ID="VEHICLES">
+<div class="tab-pane fade" id="vehicles">
     @if($page == "edit")
         <div class="float-right m-1">
-            @include('syndicates::elements.action_button',["route"=>route('vehicles.create', $syndicate->id_),"buttons" => ["add"]])
+            @include('syndicates::elements.action_button',["route"=>route('vehicles.create', $syndicate->ID_),"buttons" => ["add"]])
         </div>
     @endif
     <div class="table-responsive">
@@ -36,11 +36,11 @@
                             <a
                                 data-toggle="tooltip"
                                 title="{{ __('Kemaskini') }}"
-                                class="btn btn-warning btn-xs"
+                                class="btn btn-warning"
                                 href="{{ route('vehicles.show', [$syndicate->ID_, $vehicle->ID_]) }}">
                                 <i class="far fa-edit"></i>
                             </a>
-                            <a onclick="if(confirm('Padam Kenderaan?'))document.getElementById('form-vehicle-delete-{{$syndicate->id_}}').submit();"
+                            <a onclick="if(confirm('Padam Kenderaan?'))document.getElementById('form-vehicle-delete-{{$syndicate->ID_}}').submit();"
                                data-toggle="tooltip"
                                title="{{ __('Padam') }}"
                                class="btn btn-danger btn-xs"
