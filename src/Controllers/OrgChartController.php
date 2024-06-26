@@ -17,7 +17,7 @@ class OrgChartController extends Controller
 
     private function getNode($model, $id){
 
-        $model_prefix = "App\Models";
+        $model_prefix = "\Mpob\Syndicates\src\Models";
         $modelType = $model_prefix . '\\' . $model;
         $model = $modelType::find($id);
         $trc_acc_skeleton = $model->trc_acc_skeleton == null ? collect():$model->trc_acc_skeleton;
