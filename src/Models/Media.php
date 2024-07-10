@@ -15,6 +15,6 @@ class Media extends BaseMedia
 
     public function uploaded_by()
     {
-        return $this->belongsTo(User::class, 'CUSTOM_PROPERTIES.UPLOADED_BY');
+        return $this->belongsTo(User::class, 'custom_properties.uploaded_by');
     }
 }

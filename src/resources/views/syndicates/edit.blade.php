@@ -233,7 +233,7 @@
                     </div>
                 </div>
             </div>
-            @include("syndicates.tabs.index",["page"=>request()->route()->getActionMethod()])
+            @include("syndicates::syndicates.tabs.index",["page"=>request()->route()->getActionMethod()])
         </div>
         <form method="post" id="syndicate-profile-archive"
               action="{{ route('syndicates.archive', $syndicate->id_) }}">
