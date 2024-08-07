@@ -9,7 +9,7 @@ class Media extends BaseMedia
 {
     use HasFactory;
 
-    protected $table = "media";
+    protected $table = "MEDIA";
     protected $primaryKey = "ID_";
     protected $keyType = "string";
 
